@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package appharmacy2;
+package appharmacy3;
 
 /**
  *
  * @author pallerma_sd2022
  */
 public interface Login {
-    public void login();
-    public void logout();
+    public User login(User e, Pharmacy a);
+//    public void logout();
+    public User signUp(User e);
 }

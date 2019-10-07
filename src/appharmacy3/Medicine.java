@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package appharmacy2;
+package appharmacy3;
 
 /**
  *
@@ -12,18 +12,19 @@ package appharmacy2;
 public class Medicine {
     private String genericName;
     private String brandName;
-    private String description;
-    private float price;
+    private String type;
+    private double price;
 
     public Medicine() {
     }
 
-    public Medicine(String genericName, String brandName, float price) {
+    public Medicine(String genericName, String brandName, String type, double price) {
         this.genericName = genericName;
         this.brandName = brandName;
+        this.type = type;
         this.price = price;
     }
-    
+
     public String getGenericName() {
         return genericName;
     }
@@ -41,30 +42,23 @@ public class Medicine {
     }
 
     public String getDescription() {
-        return description;
+        return type;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.type = description;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
-    
+
     @Override
-    public String toString(){
-        return String.format("Brand Name: %s \nGeneric Name: %s \nPrice: %f", genericName,brandName,price);
+    public String toString() {
+        return String.format("Brand Name: %-17s \nGeneric Name: %s \nType: %s \nPrice: %f", genericName, brandName, type, price);
     }
-    
-    
 }
-
-
-
-
-
