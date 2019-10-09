@@ -11,6 +11,6 @@ package appharmacy3;
  */
 public interface Login {
     public User login(User e, Pharmacy a);
-//    public void logout();
-    public User signUp(User e);
+    public void logout();
+    public void signUp(Pharmacy a);
 }
