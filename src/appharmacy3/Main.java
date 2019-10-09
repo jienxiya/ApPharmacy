@@ -6,7 +6,6 @@
 package appharmacy3;
 
 import java.util.Scanner;
-import static javafx.application.Platform.exit;
 
 /**
  *
@@ -31,79 +30,65 @@ public class Main {
         rose.addMedicine(rose);
 
         System.out.println("---------Sign Up to ApPharmacy---------");
-        System.out.println("Press 1 to Login\nPress 2 to Register");
-        int choice = input.nextInt();
+
         while (true) {
+            System.out.println("Press 1 to Login\nPress 2 to Register");
+            int choice = input.nextInt();
             if (choice == 1) {
                 User a = u.login(u, rose);
 //            while (true) {
                 if (a == rose.getMj() || a instanceof Pharmacist) {
                     System.out.println("---------Logged in as Pharmacist---------");
-                    while (true) {                       
+                    while (true) {
                         System.out.println("Press 1 to add medicine\nPress 2 to view medicines\nPress 3 to Remove medicine\nPress 4 to Update Medicine Info\nPress 5 to Logout");
                         int option = input.nextInt();
-                        switch (option) {
-                            case 1:
-                                rose.getMj().addMedicine(rose);
-                                break;
-                            case 2:
-                                rose.viewAvailableMedicine();
-                                break;
-                            case 3:
-                                rose.removeMedicine(b);
-                                break;
-                            case 4:
-                                rose.updateMedicine();
-                                break;
-                            case 5:
-                                a.logout();
-                                break;
+                        if (option == 1) {
+                            rose.getMj().addMedicine(rose);
+                        } else if (option == 2) {
+                            rose.viewAvailableMedicine();
+                        } else if (option == 3) {
+                            rose.removeMedicine(b);
+                        } else if (option == 4) {
+                            rose.updateMedicine();
+                        } else {
+                            a.logout();
+                            break;
                         }
                     }
                 } else if (a instanceof Adult) {
                     System.out.println("---------Logged in as Adult---------");
-                    while (true) {                      
+                    while (true) {
                         System.out.println("Press 1 to view medicines\nPress 2 to purchased medicine\nPress 3 to view purchases medicine\nPress 4 to pay\nPress 5 to Logout");
                         int option = input.nextInt();
-                        switch (option) {
-                            case 1:
-                                rose.viewAvailableMedicine();
-                                break;
-                            case 2:
-                                c.purchasedMedicine(b, rose);
-                                break;
-                            case 3:
-                                c.viewPurchasedMedicine();
-                                break;
-                            case 4:
-                                c.pay(a, rose);
-                                break;
-                            case 5:
-                                a.logout();
-                                break;
+                        if (option == 1) {
+                            rose.viewAvailableMedicine();
+                        } else if (option == 2) {
+                            c.purchasedMedicine(b, rose);
+                        } else if (option == 3) {
+                            c.viewPurchasedMedicine();
+                        } else if (option == 4) {
+                            c.pay(a, rose);
+                        } else {
+                            a.logout();
+                            break;
                         }
                     }
                 } else if (a instanceof SeniorCitizen) {
                     System.out.println("---------Logged in as Senior Citizen---------");
-                    while (true) {                       
+                    while (true) {
                         System.out.println("Press 1 to view medicines\nPress 2 to purchased medicine\nPress 3 to view purchases medicine\nPress 4 to pay\nPress 5 to Logout");
                         int option = input.nextInt();
-                        switch (option) {
-                            case 1:
-                                rose.viewAvailableMedicine();
-                                break;
-                            case 2:
-                                c.purchasedMedicine(b, rose);
-                                break;
-                            case 3:
-                                c.viewPurchasedMedicine();
-                                break;
-                            case 4:
-                                c.pay(a, rose);
-                                break;
-                            case 5:
-                                a.logout();
-                                break;
+                        if (option == 1) {
+                            rose.viewAvailableMedicine();
+                        } else if (option == 2) {
+                            c.purchasedMedicine(b, rose);
+                        } else if (option == 3) {
+                            c.viewPurchasedMedicine();
+                        } else if (option == 4) {
+                            c.pay(a, rose);
+                        } else {
+                            a.logout();
+                            break;
                         }
                     }
                 }

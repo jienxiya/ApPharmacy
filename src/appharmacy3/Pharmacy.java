@@ -58,10 +58,10 @@ public class Pharmacy {
     }
     
     public void viewAvailableMedicine() {
-        System.out.printf("%20s %5s %20s %5s %20s %5s %15s %5s\n", "Generic name", "|", "Brand Name", "|", "Medicine Type", "|", "Price", "|");
-        System.out.println("------------------------------------------------------------------------------------------------------");
+        System.out.printf("%20s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", "Generic name", "|", "Brand Name", "|", "Medicine Type", "|", "Price", "|","Stock","|");
+        System.out.println("------------------------------------------------------------------------------------------------------------");
         for (int i = 0; i < this.getMedicines().size(); i++) {
-            System.out.printf("%20s %5s %20s %5s %20s %5s %15s %5s\n", this.getMedicines().get(i).getGenericName(), "|", this.getMedicines().get(i).getBrandName(), "|", this.getMedicines().get(i).getType(), "|", this.getMedicines().get(i).getPrice(), "|");
+            System.out.printf("%20s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", this.getMedicines().get(i).getGenericName(), "|", this.getMedicines().get(i).getBrandName(), "|", this.getMedicines().get(i).getType(), "|", this.getMedicines().get(i).getPrice(), "|",this.getMedicines().get(i).getMedStock(),"|");
         }
     }
     
