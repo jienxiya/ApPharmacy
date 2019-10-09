@@ -43,7 +43,7 @@ public class Main {
                         System.out.println("Press 1 to add medicine\nPress 2 to view medicines\nPress 3 to Remove medicine\nPress 4 to Update Medicine Info\nPress 5 to Logout");
                         int option = input.nextInt();
                         if (option == 1) {
-                            rose.getMj().addMedicine(rose);
+                            rose.addMedicine(rose);
                         } else if (option == 2) {
                             rose.viewAvailableMedicine();
                         } else if (option == 3) {

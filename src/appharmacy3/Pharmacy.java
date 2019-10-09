@@ -8,8 +8,8 @@ public class Pharmacy {
     private String pharmacyName;
     private String location;
     
-    ArrayList<Medicine> medicines = new ArrayList<Medicine>();
-    ArrayList<User> accounts = new ArrayList<User>();
+    public ArrayList<Medicine> medicines = new ArrayList<Medicine>();
+    public ArrayList<User> accounts = new ArrayList<User>();
     Scanner input = new Scanner(System.in);
     Pharmacist mj = new Pharmacist("MJ","mj@gmail.com",20,"123");
 
