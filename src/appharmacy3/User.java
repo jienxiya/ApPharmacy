@@ -5,7 +5,8 @@ import static javafx.application.Platform.exit;
 
 public class User implements Login {
 
-    Scanner input = new Scanner(System.in);
+    Scanner strInput = new Scanner(System.in);
+    Scanner intInput = new Scanner(System.in);
 
     private String userName;
     private String email;
@@ -56,52 +57,45 @@ public class User implements Login {
 
     @Override
     public void signUp(Pharmacy a) {
-        Scanner input = new Scanner(System.in);
-        String uName, email, pass;
-        int age;
-        System.out.println("Log in as :");
-        System.out.println("Press 1 if Pharmacist\nPress 2 if Adult\nPress 3 if SeniorCitizen");
-        int option = input.nextInt();
+        String uName, uEmail, pass;
+        int edad;
+        System.out.println("Sign up as :");
+        System.out.println("Press 1 if Pharmacist\nPress 2 if Customer");
+        int option = intInput.nextInt();
         if (option == 1) {
-            Pharmacist e = new Pharmacist();
             System.out.print("Username: ");
-            uName = input.next();
+            uName = strInput.nextLine();
             System.out.print("Email: ");
-            email = input.next();
+            uEmail = strInput.nextLine();
             System.out.print("Age: ");
-            age = input.nextInt();
+            edad = intInput.nextInt();
             System.out.print("Password: ");
-            pass = input.next();
-            e = new Pharmacist(uName, email, age, pass);
-            a.getAccounts().add(e);
-            System.out.println("Registered!");
-
+            pass = strInput.nextLine();
+            if (edad >= 18) {
+                Pharmacist e = new Pharmacist(uName, uEmail, edad, pass);
+                a.getAccounts().add(e);
+                System.out.println("Registered!");
+            } else {
+                System.out.println("You're not allowed to sigup");
+            }
         } else if (option == 2) {
-            Adult e = new Adult();
             System.out.print("Username: ");
-            uName = input.next();
+            uName = strInput.nextLine();
             System.out.print("Email: ");
-            email = input.next();
+            uEmail = strInput.nextLine();
             System.out.print("Age: ");
-            age = input.nextInt();
+            edad = intInput.nextInt();
             System.out.print("Password: ");
-            pass = input.next();
-            e = new Adult(uName, email, age, pass);
-            a.getAccounts().add(e);
-        } else if (option == 3) {
-            SeniorCitizen e = new SeniorCitizen();
-            System.out.print("Username: ");
-            uName = input.next();
-            System.out.print("Email: ");
-            email = input.next();
-            System.out.print("Age: ");
-            age = input.nextInt();
-            System.out.print("Password: ");
-            pass = input.next();
-            e = new SeniorCitizen(uName, email, age, pass);
-            a.getAccounts().add(e);
-        } else {
-            System.out.println("Sorry! Wrong input!");
+            pass = strInput.nextLine();
+            if (edad >= 18 && edad <= 59) {
+                Adult e = new Adult(uName, uEmail, edad, pass);
+                a.getAccounts().add(e);
+            } else if (edad >= 60) {
+                SeniorCitizen e = new SeniorCitizen(uName, uEmail, edad, pass);
+                a.getAccounts().add(e);
+            }else{
+                System.out.println("You're not Adult nor Senior Citizen");
+            }
         }
     }
 
@@ -115,11 +109,11 @@ public class User implements Login {
         User b = new User();
         int count = 0;
         System.out.print("Enter email: ");
-        String email = input.nextLine();
+        String uEmail = strInput.nextLine();
         for (int i = 0; i < a.getAccounts().size(); i++) {
-            if (email.equals(a.getAccounts().get(i).getEmail()) == true) {
+            if (uEmail.equals(a.getAccounts().get(i).getEmail()) == true) {
                 System.out.print("Enter password: ");
-                String pass = input.nextLine();
+                String pass = strInput.nextLine();
                 if (pass.equals(a.getAccounts().get(i).getPassword()) == true) {
                     b = a.getAccounts().get(i);
                     return b;
@@ -127,9 +121,9 @@ public class User implements Login {
             }
             count++;
         }
-        if (a.getMj().getEmail().equals(email) == true) {
+        if (a.getMj().getEmail().equals(uEmail) == true) {
             System.out.print("Enter password: ");
-            String pass = input.nextLine();
+            String pass = strInput.nextLine();
             if (a.getMj().getPassword().equals(pass) == true) {
                 b = a.getMj();
                 return b;

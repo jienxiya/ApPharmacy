@@ -20,8 +20,6 @@ public class Main {
         Medicine b = new Medicine();
         User u = new User();
         Customer c = new Customer();
-        SeniorCitizen sc = new SeniorCitizen();
-        Adult ad = new Adult();
 
         //Populate Account
         rose.addAccounts(rose);
@@ -36,7 +34,6 @@ public class Main {
             int choice = input.nextInt();
             if (choice == 1) {
                 User a = u.login(u, rose);
-//            while (true) {
                 if (a == rose.getMj() || a instanceof Pharmacist) {
                     System.out.println("---------Logged in as Pharmacist---------");
                     while (true) {
@@ -76,7 +73,7 @@ public class Main {
                 } else if (a instanceof SeniorCitizen) {
                     System.out.println("---------Logged in as Senior Citizen---------");
                     while (true) {
-                        System.out.println("Press 1 to view medicines\nPress 2 to purchase medicine\nPress 3 to view purchases medicine\nPress 4 to pay\nPress 5 to Logout");
+                        System.out.println("Press 1 to view medicines\nPress 2 to purchase medicine\nPress 3 to view purchased medicine\nPress 4 to pay\nPress 5 to Logout");
                         int option = input.nextInt();
                         if (option == 1) {
                             rose.viewAvailableMedicine();

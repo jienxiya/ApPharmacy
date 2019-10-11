@@ -95,25 +95,32 @@ public class Pharmacy {
     }
 
     public void populateMedicine(Pharmacy a) {
+        //Medicine for Headache
         a.addMedicine(new Medicine(1, "Paracetamol", "Biogesic", "Head ache", 5, 6));
         a.addMedicine(new Medicine(2, "Paracetamol", "Bioflu", "Head ache", 5, 7));
         a.addMedicine(new Medicine(3, "Paracetamol", "Rexidol Forte", "Head ache", 5, 4));
+        //Medicine for Cough
         a.addMedicine(new Medicine(4, "Dextromethorphan Hydrobromide", "Tuseran Forte", "Cough", 5, 8));
         a.addMedicine(new Medicine(5, "Carbocisteine", "Solmux", "Cough", 5, 12));
         a.addMedicine(new Medicine(6, "Vitex Negundo L.(Lagundi Leaf)", "Ascof Forte", "Cough", 5, 12));
+        //Medicine for Body Pain
         a.addMedicine(new Medicine(7, "Ibuprofen", "Medicol Advance", "Body Pain", 5, 12));
         a.addMedicine(new Medicine(8, "Ibuprofen", "Alaxan FR", "Body Pain", 5, 12));
         a.addMedicine(new Medicine(9, "Ibuprofen", "Advil", "Body Pain", 5, 12));
+        //Medicine for Allergies
         a.addMedicine(new Medicine(10, "Cetirizine", "Zyrtec", "Allergy", 5, 12));
         a.addMedicine(new Medicine(11, "Loratadine", "Allerta", "Allergy", 5, 12));
         a.addMedicine(new Medicine(12, "Cetirizine + Phenyliphrine", "Alnix Plus", "Allergy", 5, 12));
     }
 
     public void addAccounts(Pharmacy a) {
+        //seniorCitizen
         a.getAccounts().add(new SeniorCitizen("Maria", "maria@gmail.com", 70, "123"));
         a.getAccounts().add(new SeniorCitizen("Juana", "juana@gmail.com", 65, "123"));
+        //adult
         a.getAccounts().add(new Adult("Jane", "jane@gmail.com", 25, "123"));
         a.getAccounts().add(new Adult("Monica", "mon@gmail.com", 26, "123"));
+        //pharmacist
         a.getAccounts().add(new Pharmacist("jana", "jana@gmail.com", 30, "123"));
         a.getAccounts().add(new Pharmacist("Yeo", "yeo@gmail.com", 25, "123"));
     }

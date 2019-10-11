@@ -17,10 +17,10 @@ public class Customer extends User {
     private ArrayList<Medicine> listOfPurchasedMed = new ArrayList();
 
     ArrayList<Double> price = new ArrayList();
-    
-    Scanner strInput = new Scanner(System.in);
-    Scanner intInput = new Scanner(System.in);
-    public int quantity = 0;
+
+    Scanner stringInput = new Scanner(System.in);
+    Scanner integerInput = new Scanner(System.in);
+    public int qty;
     public double amount = 0;
 
     public Customer() {
@@ -42,70 +42,71 @@ public class Customer extends User {
         this.listOfPurchasedMed = listOfPurchasedMed;
     }
 
-    public void purchasedMedicine(Medicine med, Pharmacy a) {
+    public double purchasedMedicine(Medicine med, Pharmacy a) {
         System.out.print("Medicine ID: ");
-        int bName = intInput.nextInt();
+        int bName = integerInput.nextInt();
         System.out.print("Quantity: ");
-        quantity = intInput.nextInt();
+        this.qty = integerInput.nextInt();
         for (int i = 0; i < a.getMedicines().size(); i++) {
-            if (a.getMedicines().get(i).getMedID()== bName ) {
-                if (quantity <= a.getMedicines().get(i).getMedStock()) {
-                    amount = quantity * a.getMedicines().get(i).getPrice();
+            if (a.getMedicines().get(i).getMedID() == bName) {
+                if (this.qty <= a.getMedicines().get(i).getMedStock()) {
+                    amount = this.qty * a.getMedicines().get(i).getPrice();
                     this.listOfPurchasedMed.add(a.getMedicines().get(i));
                     System.out.println("You added " + a.medicines.get(i).getBrandName() + " to your cart");
-                    a.getMedicines().get(i).setMedStock(a.getMedicines().get(i).getMedStock() - quantity);
-                }else{
+                    a.getMedicines().get(i).setMedStock(a.getMedicines().get(i).getMedStock() - this.qty);
+                } else {
                     System.out.println("Medicine Stock is not enough");
                 }
-            } 
+            }
+//            return amount;
         }
+        return amount;
     }
 
     public void viewPurchasedMedicine() {
-        System.out.printf("%30s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", "Generic name", "|", "Brand Name", "|", "Medicine Type", "|", "Price", "|", "Quantity", "|");
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%30s %5s %20s %5s %20s %5s %15s %5s \n", "Generic name", "|", "Brand Name", "|", "Medicine Type", "|", "Price", "|");
+        System.out.println("----------------------------------------------------------------------------------------------------------------");
         for (int i = 0; i < this.getListOfPurchasedMed().size(); i++) {
-            System.out.printf("%30s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", this.getListOfPurchasedMed().get(i).getGenericName(), "|", this.getListOfPurchasedMed().get(i).getBrandName(), "|", this.getListOfPurchasedMed().get(i).getType(), "|", this.getListOfPurchasedMed().get(i).getPrice(), "|", this.quantity, "|");
+            System.out.printf("%30s %5s %20s %5s %20s %5s %15s %5s\n", this.getListOfPurchasedMed().get(i).getGenericName(), "|", this.getListOfPurchasedMed().get(i).getBrandName(), "|", this.getListOfPurchasedMed().get(i).getType(), "|", this.getListOfPurchasedMed().get(i).getPrice(), "|");
         }
     }
 
     public void pay(User c, Pharmacy rose) {
         System.out.print("Enter ordered medicine (brand name): ");
-        String choose = strInput.nextLine();
+        String choose = stringInput.nextLine();
+//        System.out.print("Number of medicine you want to pay: ");
+//        this.qty = integerInput.nextInt();
         int count = 0;
         for (int i = 0; i < this.listOfPurchasedMed.size(); i++) {
             if (this.getListOfPurchasedMed().get(i).getBrandName().equals(choose) == true) {
                 System.out.print("Enter money: ");
-                double cash = intInput.nextDouble();
+                double cash = integerInput.nextDouble();
                 if (c instanceof Adult == true) {
-                    if (cash == this.getListOfPurchasedMed().get(i).getPrice()) {
+                    if (cash == (this.getListOfPurchasedMed().get(i).getPrice() * this.qty)) {
                         this.getListOfPurchasedMed().remove(this.getListOfPurchasedMed().get(i));
                         System.out.println("Successfully paid!");
 
-                    } else if (cash > this.getListOfPurchasedMed().get(i).getPrice()) {
-                        double cash1 = this.getListOfPurchasedMed().get(i).getPrice();
+                    } else if (cash > this.getListOfPurchasedMed().get(i).getPrice()* this.qty) {
+                        double cash1 = this.getListOfPurchasedMed().get(i).getPrice() * this.qty;
                         System.out.println("Change is: " + (cash - cash1));
                         this.getListOfPurchasedMed().remove(this.getListOfPurchasedMed().get(i));
                         System.out.println("Successfully paid!");
-
                     } else {
                         System.out.println("Insufficient cash!");
-
                     }
                 } else {
-                    if (cash == this.getListOfPurchasedMed().get(i).getPrice()) {
+                    if (cash == (this.getListOfPurchasedMed().get(i).getPrice() * this.qty)) {
                         this.getListOfPurchasedMed().remove(this.getListOfPurchasedMed().get(i));
                         System.out.println("Successfully paid!");
 
-                    } else if (cash > this.getListOfPurchasedMed().get(i).getPrice()) {
-
+                    } else if (cash > (this.getListOfPurchasedMed().get(i).getPrice() * this.qty)) {
+                        double cash1 = this.getListOfPurchasedMed().get(i).getPrice() * this.qty;
+                        double discount = cash1 * 0.20;
                         System.out.println("Successfully paid!");
-                        System.out.println("Change is: " + (cash - this.getListOfPurchasedMed().get(i).getPrice() * 0.20));
+                        System.out.println("Change is: " + (cash - (cash1 -discount)));
                         this.getListOfPurchasedMed().remove(this.getListOfPurchasedMed().get(i));
-
                     } else {
                         System.out.println("Insufficient cash!");
-
                     }
                 }
             }
