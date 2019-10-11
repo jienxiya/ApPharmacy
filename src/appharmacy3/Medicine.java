@@ -10,6 +10,7 @@ package appharmacy3;
  * @author pallerma_sd2022
  */
 public class Medicine {
+    private int medID;
     private String genericName;
     private String brandName;
     private String type;
@@ -19,7 +20,8 @@ public class Medicine {
     public Medicine() {
     }
 
-    public Medicine(String genericName, String brandName, String type,int medStock, double price) {
+    public Medicine(int medID,String genericName, String brandName, String type,int medStock, double price) {
+        this.medID = medID;
         this.genericName = genericName;
         this.brandName = brandName;
         this.type = type;
@@ -68,6 +70,13 @@ public class Medicine {
         this.type = type;
     }
 
+    public int getMedID() {
+        return medID;
+    }
+
+    public void setMedID(int medID) {
+        this.medID = medID;
+    }
 
     @Override
     public String toString() {

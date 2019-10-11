@@ -7,7 +7,6 @@ package appharmacy3;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import static javafx.application.Platform.exit;
 
 /**
  *
@@ -18,7 +17,9 @@ public class Customer extends User {
     private ArrayList<Medicine> listOfPurchasedMed = new ArrayList();
 
     ArrayList<Double> price = new ArrayList();
-    Scanner input = new Scanner(System.in);
+    
+    Scanner strInput = new Scanner(System.in);
+    Scanner intInput = new Scanner(System.in);
     public int quantity = 0;
     public double amount = 0;
 
@@ -42,42 +43,40 @@ public class Customer extends User {
     }
 
     public void purchasedMedicine(Medicine med, Pharmacy a) {
-        System.out.print("Medicine Brandname: ");
-        String bName = input.next();
-        System.out.println("");
+        System.out.print("Medicine ID: ");
+        int bName = intInput.nextInt();
         System.out.print("Quantity: ");
-        quantity = input.nextInt();
+        quantity = intInput.nextInt();
         for (int i = 0; i < a.getMedicines().size(); i++) {
-            if (a.getMedicines().get(i).getBrandName().equals(bName) == true) {
+            if (a.getMedicines().get(i).getMedID()== bName ) {
                 if (quantity <= a.getMedicines().get(i).getMedStock()) {
                     amount = quantity * a.getMedicines().get(i).getPrice();
                     this.listOfPurchasedMed.add(a.getMedicines().get(i));
+                    System.out.println("You added " + a.medicines.get(i).getBrandName() + " to your cart");
                     a.getMedicines().get(i).setMedStock(a.getMedicines().get(i).getMedStock() - quantity);
                 }else{
                     System.out.println("Medicine Stock is not enough");
                 }
-            } else {
-                System.out.println("Medicine Not Available");
-            }
+            } 
         }
     }
 
     public void viewPurchasedMedicine() {
-        System.out.printf("%20s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", "Generic name", "|", "Brand Name", "|", "Medicine Type", "|", "Price", "|", "Quantity", "|");
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%30s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", "Generic name", "|", "Brand Name", "|", "Medicine Type", "|", "Price", "|", "Quantity", "|");
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
         for (int i = 0; i < this.getListOfPurchasedMed().size(); i++) {
-            System.out.printf("%20s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", this.getListOfPurchasedMed().get(i).getGenericName(), "|", this.getListOfPurchasedMed().get(i).getBrandName(), "|", this.getListOfPurchasedMed().get(i).getType(), "|", this.getListOfPurchasedMed().get(i).getPrice(), "|", this.quantity, "|");
+            System.out.printf("%30s %5s %20s %5s %20s %5s %15s %5s %15s %5s\n", this.getListOfPurchasedMed().get(i).getGenericName(), "|", this.getListOfPurchasedMed().get(i).getBrandName(), "|", this.getListOfPurchasedMed().get(i).getType(), "|", this.getListOfPurchasedMed().get(i).getPrice(), "|", this.quantity, "|");
         }
     }
 
     public void pay(User c, Pharmacy rose) {
         System.out.print("Enter ordered medicine (brand name): ");
-        String choose = input.nextLine();
+        String choose = strInput.nextLine();
         int count = 0;
         for (int i = 0; i < this.listOfPurchasedMed.size(); i++) {
             if (this.getListOfPurchasedMed().get(i).getBrandName().equals(choose) == true) {
-                System.out.println("Enter money: ");
-                double cash = input.nextDouble();
+                System.out.print("Enter money: ");
+                double cash = intInput.nextDouble();
                 if (c instanceof Adult == true) {
                     if (cash == this.getListOfPurchasedMed().get(i).getPrice()) {
                         this.getListOfPurchasedMed().remove(this.getListOfPurchasedMed().get(i));

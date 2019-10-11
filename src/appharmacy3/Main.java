@@ -27,7 +27,7 @@ public class Main {
         rose.addAccounts(rose);
 
         //Populate Medicine
-        rose.addMedicine(rose);
+        rose.populateMedicine(rose);
 
         System.out.println("---------Sign Up to ApPharmacy---------");
 
@@ -40,16 +40,16 @@ public class Main {
                 if (a == rose.getMj() || a instanceof Pharmacist) {
                     System.out.println("---------Logged in as Pharmacist---------");
                     while (true) {
-                        System.out.println("Press 1 to add medicine\nPress 2 to view medicines\nPress 3 to Remove medicine\nPress 4 to Update Medicine Info\nPress 5 to Logout");
+                        System.out.println("Press 1 to add medicine\nPress 2 to view medicines\nPress 3 to Remove medicine\nPress 4 to Update Medicine Stock\nPress 5 to Logout");
                         int option = input.nextInt();
                         if (option == 1) {
-                            rose.addMedicine(rose);
+                            rose.addMedicine(b,rose);
                         } else if (option == 2) {
                             rose.viewAvailableMedicine();
                         } else if (option == 3) {
                             rose.removeMedicine(b);
                         } else if (option == 4) {
-                            rose.updateMedicine();
+                            rose.updateMedicineStock(b);
                         } else {
                             a.logout();
                             break;
@@ -58,7 +58,7 @@ public class Main {
                 } else if (a instanceof Adult) {
                     System.out.println("---------Logged in as Adult---------");
                     while (true) {
-                        System.out.println("Press 1 to view medicines\nPress 2 to purchased medicine\nPress 3 to view purchases medicine\nPress 4 to pay\nPress 5 to Logout");
+                        System.out.println("Press 1 to view medicines\nPress 2 to purchase medicine\nPress 3 to view purchases medicine\nPress 4 to pay\nPress 5 to Logout");
                         int option = input.nextInt();
                         if (option == 1) {
                             rose.viewAvailableMedicine();
@@ -76,7 +76,7 @@ public class Main {
                 } else if (a instanceof SeniorCitizen) {
                     System.out.println("---------Logged in as Senior Citizen---------");
                     while (true) {
-                        System.out.println("Press 1 to view medicines\nPress 2 to purchased medicine\nPress 3 to view purchases medicine\nPress 4 to pay\nPress 5 to Logout");
+                        System.out.println("Press 1 to view medicines\nPress 2 to purchase medicine\nPress 3 to view purchases medicine\nPress 4 to pay\nPress 5 to Logout");
                         int option = input.nextInt();
                         if (option == 1) {
                             rose.viewAvailableMedicine();

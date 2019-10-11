@@ -144,7 +144,7 @@ public class User implements Login {
 
     @Override
     public void logout() {
-        System.out.println("-----------------------------Thankyou for visiting our pharmacy. Come Again!-----------------------------");
+        System.out.println("-----------------------------Thankyou-----------------------------");
         exit();
     }
 }
