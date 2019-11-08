@@ -27,7 +27,7 @@ public class Adult extends Customer{
     
     @Override
     public String toString(){
-        return String.format("Username: %s \nEmail: %s \nPassword: %s", super.getUserName(),super.getEmail(),super.getPassword());
+        return String.format("Username: %s \nEmail: %s\nAge: %d\nPassword: %s", super.getUserName(),super.getEmail(),super.getAge(),super.getPassword());
     }
     
 }

@@ -101,7 +101,7 @@ public class User implements Login {
 
     @Override
     public String toString() {
-        return String.format("Username: %s\nEmail: %s\nPassword: %s", this.userName, this.email, this.password);
+        return String.format("Username: %s\nEmail: %s\nAge: %d\nPassword: %s", this.userName, this.email, this.age, this.password);
     }
 
     @Override

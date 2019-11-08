@@ -5,6 +5,8 @@
  */
 package appharmacy3;
 
+import GUI.Botica;
+import GUI.RegisterPage;
 import java.util.Scanner;
 
 /**
@@ -20,13 +22,12 @@ public class Main {
         Medicine b = new Medicine();
         User u = new User();
         Customer c = new Customer();
-
-        //Populate Account
-        rose.addAccounts(rose);
-
+        
         //Populate Medicine
         rose.populateMedicine(rose);
-
+        new Botica();
+//          new RegisterPage();
+        
         System.out.println("---------Sign Up to ApPharmacy---------");
 
         while (true) {
