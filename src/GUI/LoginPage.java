@@ -26,7 +26,7 @@ public class LoginPage extends JFrame implements ActionListener {
     public LoginPage() {
         Pharmacy rose = new Pharmacy();
         rose.addAccounts(rose);
-        rose.getAccounts();
+        System.out.println(rose.getAccounts());
         
         JFrame f = new JFrame("ApPharmacy");
 

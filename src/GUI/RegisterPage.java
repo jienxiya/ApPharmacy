@@ -8,14 +8,8 @@ package GUI;
 import appharmacy3.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
+
 
 /**
  *
@@ -119,15 +113,16 @@ public class RegisterPage extends JFrame implements ActionListener {
                 String option = G1.getSelection().getActionCommand();
                 String age = aField.getText();
                 int edad = Integer.parseInt(age);
+//                User newUser = new User(unameField.getText(),eField.getText(),edad,pField.getText());
                 if(option.equals("Pharmacist") && edad >= 18){
-                    rose.getAccounts().add(new Pharmacist(unameField.getText(),eField.getText(),edad,pField.getText()));
+                    rose.addUser(new Pharmacist(unameField.getText(),eField.getText(),edad,pField.getText()));
                 }else if(option.equals("Customer")){
                     if(edad < 18){
                         JOptionPane.showMessageDialog(null,"Sorry! Underage not allowed to register");
                     }else if(edad >= 18 && edad <= 59){
-                        rose.getAccounts().add(new Adult(unameField.getText(),eField.getText(),edad,pField.getText()));
+                        rose.addUser(new Adult(unameField.getText(),eField.getText(),edad,pField.getText()));
                     }else{
-                        rose.getAccounts().add(new SeniorCitizen(unameField.getText(),eField.getText(),edad,pField.getText()));
+                        rose.addUser(new SeniorCitizen(unameField.getText(),eField.getText(),edad,pField.getText()));
                     }
                 }
 //                User newUser = new User(unameField.getText(),eField.getText(),edad,pField.getText());

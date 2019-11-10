@@ -9,7 +9,7 @@ public class Pharmacy {
     private String location;
 
     public ArrayList<Medicine> medicines = new ArrayList<>();
-    public ArrayList<User> accounts = new ArrayList<>();
+    static ArrayList<User> accounts = new ArrayList<>();
     Scanner strInput = new Scanner(System.in);
     Scanner intInput = new Scanner(System.in);
     Pharmacist mj = new Pharmacist("MJ", "mj@gmail.com", 20, "123");
