@@ -15,13 +15,13 @@ import javax.swing.*;
  *
  * @author 2ndyrGroupB
  */
-public class RegisterPage extends JFrame implements ActionListener {
+public class RegisterPage extends JFrame {
 
     public RegisterPage() {
         Pharmacy rose = new Pharmacy();
         rose.addAccounts(rose);
         
-        JFrame f = new JFrame("ApPharmacy");
+        JFrame frame3 = new JFrame("ApPharmacy");
         
         JLabel label1 = new JLabel("Register", JLabel.CENTER);
         label1.setBounds(120, 10, 250, 20);
@@ -81,31 +81,31 @@ public class RegisterPage extends JFrame implements ActionListener {
         
 
         //add to frame
-        f.add(pharma);
-        f.add(customer);
-        f.add(label2);
-        f.add(label1);
-        f.add(eField);
-        f.add(aField);
-        f.add(email);
-        f.add(age);
-        f.add(uname);
-        f.add(unameField);
-        f.add(btnLogin);
-        f.add(pass);
-        f.add(pField);
+        frame3.add(pharma);
+        frame3.add(customer);
+        frame3.add(label2);
+        frame3.add(label1);
+        frame3.add(eField);
+        frame3.add(aField);
+        frame3.add(email);
+        frame3.add(age);
+        frame3.add(uname);
+        frame3.add(unameField);
+        frame3.add(btnLogin);
+        frame3.add(pass);
+        frame3.add(pField);
         
-        f.add(getContentPane());
+        frame3.add(getContentPane());
         
         
         //button group
         G1.add(customer);
         G1.add(pharma);
         
-        f.setSize(500, 400);
-        f.setLayout(null);
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame3.setSize(500, 400);
+        frame3.setLayout(null);
+        frame3.setVisible(true);
+        frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         btnLogin.addActionListener(new ActionListener(){
             @Override
@@ -130,15 +130,11 @@ public class RegisterPage extends JFrame implements ActionListener {
 //                u.setVisible(true);
                   
                   LoginPage l = new LoginPage();
-                  l.setVisible(true);
+                  frame3.dispose();
+//                  l.setVisible(true);
             }
         });
         
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

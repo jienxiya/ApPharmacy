@@ -17,10 +17,10 @@ import javax.swing.*;
  *
  * @author pallerma_sd2022
  */
-public class Botica extends JFrame implements ActionListener{
+public class Botica extends JFrame {
 
     public Botica() {
-        JFrame f = new JFrame("ApPharmacy");
+        JFrame frame1 = new JFrame("ApPharmacy");
         
         JLabel label1 = new JLabel("Welcome to ApPharmacy", JLabel.CENTER);
         label1.setBounds(120, 30, 220, 20);
@@ -33,19 +33,20 @@ public class Botica extends JFrame implements ActionListener{
         register.setBounds(260, 100, 120, 40);
 
         //add to frame
-        f.add(label1);
-        f.add(login);
-        f.add(register);
-        f.setSize(500, 400);
-        f.setLayout(null);
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.add(label1);
+        frame1.add(login);
+        frame1.add(register);
+        frame1.setSize(500, 400);
+        frame1.setLayout(null);
+        frame1.setVisible(true);
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         login.addActionListener(new ActionListener(){
            @Override
            public void actionPerformed(ActionEvent e) {
                LoginPage page = new LoginPage();
-               page.setVisible(true);
+               frame1.dispose();
+//               page.setVisible(true);
            }
        });
         
@@ -53,13 +54,9 @@ public class Botica extends JFrame implements ActionListener{
            @Override
            public void actionPerformed(ActionEvent e) {
                RegisterPage reg = new RegisterPage();
-               reg.setVisible(true);
+               frame1.dispose();
+//               reg.setVisible(true);
            }
        });
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

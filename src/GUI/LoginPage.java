@@ -21,14 +21,13 @@ import javax.swing.JTextField;
  *
  * @author pallerma_sd2022
  */
-public class LoginPage extends JFrame implements ActionListener {
+public class LoginPage extends JFrame {
 
     public LoginPage() {
         Pharmacy rose = new Pharmacy();
         rose.addAccounts(rose);
-        System.out.println(rose.getAccounts());
         
-        JFrame f = new JFrame("ApPharmacy");
+        JFrame frame2 = new JFrame("ApPharmacy");
 
         JLabel label1 = new JLabel("Login", JLabel.CENTER);
         label1.setBounds(120, 10, 220, 20);
@@ -53,19 +52,19 @@ public class LoginPage extends JFrame implements ActionListener {
         pField.setBounds(140, 100, 200, 30);
 
         //add to frame
-        f.add(label1);
-        f.add(eField);
-        f.add(email);
-        f.add(btnLogin);
-        f.add(pass);
-        f.add(pField);
+        frame2.add(label1);
+        frame2.add(eField);
+        frame2.add(email);
+        frame2.add(btnLogin);
+        frame2.add(pass);
+        frame2.add(pField);
         
-        f.add(getContentPane());
+//        frame2.add(getContentPane());
 
-        f.setSize(500, 400);
-        f.setLayout(null);
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame2.setSize(500, 400);
+        frame2.setLayout(null);
+        frame2.setVisible(true);
+        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         btnLogin.addActionListener(new ActionListener() {
             @Override
@@ -76,17 +75,11 @@ public class LoginPage extends JFrame implements ActionListener {
                     if(email.equals(rose.getAccounts().get(i).getEmail()) && pass.equals(rose.getAccounts().get(i).getPassword())){    
                         User newUser = rose.getAccounts().get(i);
                         UserLogin u = new UserLogin(newUser);
-                        u.setVisible(true);
-                    }else{
-//                        JOptionPane.showMessageDialog(null, "Email or Password is incorrect");
+                        frame2.dispose();
+//                        u.setVisible(true);
                     }
                 }
             }
         });
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

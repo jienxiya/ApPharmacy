@@ -12,16 +12,19 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
  *
  * @author 2ndyrGroupB
  */
-public class UserLogin extends JFrame implements ActionListener{
+public class UserLogin extends JFrame{
     public UserLogin(User user){
+        Pharmacy rose = new Pharmacy();
+        Medicine med = new Medicine();
         
-        JFrame f = new JFrame("ApPharmacy");
+        JFrame frame4 = new JFrame("ApPharmacy");
         JLabel label1;
 
         if(user instanceof Customer){
@@ -58,7 +61,7 @@ public class UserLogin extends JFrame implements ActionListener{
         
         if(user instanceof Customer){
             add.setText(" View Medicine");
-            view.setText("Purchased Medicine");
+            view.setText("Purchase Medicine");
             remove.setText("View Purchases Medicine");
             pay.setText("Pay");
             logout.setText("Logout");
@@ -71,14 +74,14 @@ public class UserLogin extends JFrame implements ActionListener{
         }
         
         //add to frame
-        f.add(add);
-        f.add(view);
-        f.add(remove);
-        f.add(label1);
-        f.add(next);
-        f.add(back);
-        f.add(logout);
-        f.add(pay);
+        frame4.add(add);
+        frame4.add(view);
+        frame4.add(remove);
+        frame4.add(label1);
+        frame4.add(next);
+        frame4.add(back);
+        frame4.add(logout);
+        frame4.add(pay);
         
         
         //button group
@@ -88,16 +91,24 @@ public class UserLogin extends JFrame implements ActionListener{
         G1.add(remove);
         G1.add(logout);
         
-        f.setSize(500, 400);
-        f.setLayout(null);
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-    
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        frame4.setSize(500, 400);
+        frame4.setLayout(null);
+        frame4.setVisible(true);
+        frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+//        next.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String option = G1.getSelection().getActionCommand();
+//               if (user instanceof Customer){
+//                   if(option.equals("View Medicine")){
+//                       rose.viewAvailableMedicine();
+//                   }else if(option.equals("Purchase Medicine")){
+//                       ((Customer) user).purchasedMedicine(med, rose);
+//                   }
+//               }
+//            }
+//        });
     }
     
 }

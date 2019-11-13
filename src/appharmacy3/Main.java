@@ -23,6 +23,9 @@ public class Main {
         User u = new User();
         Customer c = new Customer();
         
+        //Populate Accounts
+        rose.addAccounts(rose);
+        
         //Populate Medicine
         rose.populateMedicine(rose);
         new Botica();
