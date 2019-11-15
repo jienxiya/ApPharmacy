@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Customer extends User {
 
-    private ArrayList<Medicine> listOfPurchasedMed = new ArrayList();
+    private static ArrayList<Medicine> listOfPurchasedMed = new ArrayList();
 
     ArrayList<Double> price = new ArrayList();
 
