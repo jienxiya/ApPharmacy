@@ -8,7 +8,7 @@ public class Pharmacy {
     private String pharmacyName;
     private String location;
 
-    public ArrayList<Medicine> medicines = new ArrayList<>();
+    static ArrayList<Medicine> medicines = new ArrayList<>();
     static ArrayList<User> accounts = new ArrayList<>();
     Scanner strInput = new Scanner(System.in);
     Scanner intInput = new Scanner(System.in);

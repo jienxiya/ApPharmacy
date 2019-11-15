@@ -6,14 +6,16 @@
             <file>file:/C:/Users/2ndyrGroupB/Desktop/aPharmacy/ApPharmacy/src/appharmacy3/Main.java</file>
         </group>
         <group>
-            <file>file:/Z:/paller_java/ApPharmacy/src/GUI/Botica.java</file>
-            <file>file:/Z:/paller_java/ApPharmacy/src/GUI/UserLogin.java</file>
-            <file>file:/Z:/paller_java/ApPharmacy/src/appharmacy3/User.java</file>
-            <file>file:/Z:/paller_java/ApPharmacy/src/GUI/LoginPage.java</file>
-            <file>file:/Z:/paller_java/ApPharmacy/src/GUI/RegisterPage.java</file>
-            <file>file:/Z:/paller_java/ApPharmacy/src/appharmacy3/Pharmacy.java</file>
-            <file>file:/Z:/paller_java/ApPharmacy/src/appharmacy3/Main.java</file>
-            <file>file:/Z:/paller_java/ApPharmacy/src/GUI/RegisterPage2.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/GUI/Botica.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/appharmacy3/Main.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/GUI/RegisterPage2.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/GUI/ViewAvailableMeds.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/GUI/RegisterPage.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/GUI/ViewMedicine.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/GUI/LoginPage.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/appharmacy3/Pharmacy.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/GUI/UserLogin.java</file>
+            <file>file:/Z:/paller_java/bag-O/ApPharmacy/src/appharmacy3/Customer.java</file>
         </group>
     </open-files>
 </project-private>

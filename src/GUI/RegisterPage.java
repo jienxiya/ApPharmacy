@@ -6,6 +6,7 @@
 package GUI;
 
 import appharmacy3.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -25,6 +26,7 @@ public class RegisterPage extends JFrame {
         
         JLabel label1 = new JLabel("Register", JLabel.CENTER);
         label1.setBounds(120, 10, 250, 20);
+        label1.setFont(new Font("Serif", Font.BOLD, 20));
 
         JButton btnLogin = new JButton("Register");
         btnLogin.setBounds(200, 280, 120, 40);

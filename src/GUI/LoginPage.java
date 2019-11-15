@@ -7,6 +7,7 @@ package GUI;
 
 import appharmacy3.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,14 +24,18 @@ import javax.swing.JTextField;
  */
 public class LoginPage extends JFrame {
 
+    JFrame frame2 = new JFrame("ApPharmacy");
+
     public LoginPage() {
         Pharmacy rose = new Pharmacy();
         rose.addAccounts(rose);
-        
-        JFrame frame2 = new JFrame("ApPharmacy");
+
+//        JFrame frame2 = new JFrame("ApPharmacy");
+        JOptionPane optionPane = new JOptionPane();
 
         JLabel label1 = new JLabel("Login", JLabel.CENTER);
         label1.setBounds(120, 10, 220, 20);
+        label1.setFont(new Font("Serif", Font.BOLD, 20));
 
         JButton btnLogin = new JButton("Login");
         btnLogin.setBounds(170, 150, 120, 40);
@@ -58,9 +63,8 @@ public class LoginPage extends JFrame {
         frame2.add(btnLogin);
         frame2.add(pass);
         frame2.add(pField);
-        
-//        frame2.add(getContentPane());
 
+//        frame2.add(getContentPane());
         frame2.setSize(500, 400);
         frame2.setLayout(null);
         frame2.setVisible(true);
@@ -71,15 +75,18 @@ public class LoginPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String email = eField.getText();
                 String pass = pField.getText();
-                for(int i = 0; i < rose.getAccounts().size(); i++){
-                    if(email.equals(rose.getAccounts().get(i).getEmail()) && pass.equals(rose.getAccounts().get(i).getPassword())){    
+                for (int i = 0; i < rose.getAccounts().size(); i++) {
+                    if (email.equals(rose.getAccounts().get(i).getEmail()) && pass.equals(rose.getAccounts().get(i).getPassword())) {
                         User newUser = rose.getAccounts().get(i);
                         UserLogin u = new UserLogin(newUser);
-                        frame2.dispose();
 //                        u.setVisible(true);
+                    } else {
+//                        JOptionPane.showInternalMessageDialog(frame2, "Email or Password is incorrect");
                     }
                 }
+                frame2.dispose();
             }
+
         });
     }
 }

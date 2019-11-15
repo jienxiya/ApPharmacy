@@ -6,6 +6,7 @@
 package GUI;
 
 import appharmacy3.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -35,6 +36,9 @@ public class UserLogin extends JFrame{
             label1.setBounds(120, 10, 220, 20);
         }
         
+        label1.setFont(new Font("Serif", Font.BOLD, 20));
+
+        
         JButton back = new JButton("Back"); 
         back.setBounds(100, 200, 120, 40);
         
@@ -46,21 +50,26 @@ public class UserLogin extends JFrame{
         
         add = new JRadioButton();
         add.setBounds(40, 30, 150, 50);
+        add.setActionCommand("Add Medicine");
         
         view = new JRadioButton();
         view.setBounds(40, 70, 150, 50);
+        view.setActionCommand("View Medicine");
         
         pay = new JRadioButton();
         pay.setBounds(40, 110, 180, 50);
+        pay.setActionCommand("Pay");
         
         remove = new JRadioButton();
         remove.setBounds(240, 30, 180, 50);
+        remove.setActionCommand("Remove Medicine");
         
         logout = new JRadioButton();
         logout.setBounds(240, 70, 150, 50);
+        logout.setActionCommand("logout");
         
         if(user instanceof Customer){
-            add.setText(" View Medicine");
+            add.setText("View Medicine");
             view.setText("Purchase Medicine");
             remove.setText("View Purchases Medicine");
             pay.setText("Pay");
@@ -96,19 +105,28 @@ public class UserLogin extends JFrame{
         frame4.setVisible(true);
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-//        next.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String option = G1.getSelection().getActionCommand();
-//               if (user instanceof Customer){
-//                   if(option.equals("View Medicine")){
-//                       rose.viewAvailableMedicine();
-//                   }else if(option.equals("Purchase Medicine")){
-//                       ((Customer) user).purchasedMedicine(med, rose);
-//                   }
-//               }
-//            }
-//        });
+        next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String option = G1.getSelection().getActionCommand();
+               if (user instanceof Customer){
+                   if(option.equals("Add Medicine")){ //The action command is based on the given above. View Available Medicine for Customer side
+                       ViewAvailableMeds v = new ViewAvailableMeds();
+                       v.setVisible(true);
+//                       frame4.setVisible(false);
+                   }else if(option.equals("View Medicine")){ //Purchase Medicine
+                       PurchasedMeds p = new PurchasedMeds();
+                       p.setVisible(true);
+//                       frame4.setVisible(false);
+                   }else if(option.equals("Remove Medicine")){ // View Purchased Medicine
+                       ViewPurchased vp = new ViewPurchased();
+                       vp.setVisible(true);
+                   }
+               }
+            }
+        });
     }
-    
+    public UserLogin(){
+        
+    }
 }
