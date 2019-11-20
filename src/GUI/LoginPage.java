@@ -7,7 +7,9 @@ package GUI;
 
 import appharmacy3.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -69,24 +71,27 @@ public class LoginPage extends JFrame {
         frame2.setLayout(null);
         frame2.setVisible(true);
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame2.setLocation(dim.width/3-this.getSize().width/3, dim.height/3-this.getSize().height/3);
 
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String email = eField.getText();
                 String pass = pField.getText();
+                User newUser = null;
                 for (int i = 0; i < rose.getAccounts().size(); i++) {
                     if (email.equals(rose.getAccounts().get(i).getEmail()) && pass.equals(rose.getAccounts().get(i).getPassword())) {
-                        User newUser = rose.getAccounts().get(i);
-                        UserLogin u = new UserLogin(newUser);
-//                        u.setVisible(true);
-                    } else {
-//                        JOptionPane.showInternalMessageDialog(frame2, "Email or Password is incorrect");
+                        newUser = rose.getAccounts().get(i);
                     }
                 }
-                frame2.dispose();
+                if(newUser != null){
+                    UserLogin u = new UserLogin(newUser); 
+                    frame2.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null,"Email or Password is incorrect!");
+                }  
             }
-
         });
     }
 }

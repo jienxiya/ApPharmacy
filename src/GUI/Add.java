@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author pallerma_sd2022
@@ -16,6 +19,8 @@ public class Add extends javax.swing.JFrame {
      */
     public Add() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        jPanel1.setLocation(dim.width/3-this.getSize().width/3, dim.height/3-this.getSize().height/3);
     }
 
     /**

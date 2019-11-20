@@ -6,7 +6,9 @@
 package GUI;
 
 import appharmacy3.*;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -104,6 +106,8 @@ public class UserLogin extends JFrame{
         frame4.setLayout(null);
         frame4.setVisible(true);
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame4.setLocation(dim.width/3-this.getSize().width/3, dim.height/3-this.getSize().height/3);
         
         next.addActionListener(new ActionListener() {
             @Override

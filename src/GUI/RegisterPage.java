@@ -6,7 +6,9 @@
 package GUI;
 
 import appharmacy3.*;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -108,6 +110,8 @@ public class RegisterPage extends JFrame {
         frame3.setLayout(null);
         frame3.setVisible(true);
         frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame3.setLocation(dim.width/3-this.getSize().width/3, dim.height/3-this.getSize().height/3);
         
         btnLogin.addActionListener(new ActionListener(){
             @Override
@@ -127,13 +131,9 @@ public class RegisterPage extends JFrame {
                         rose.addUser(new SeniorCitizen(unameField.getText(),eField.getText(),edad,pField.getText()));
                     }
                 }
-//                User newUser = new User(unameField.getText(),eField.getText(),edad,pField.getText());
-//                UserLogin u = new UserLogin(newUser);
-//                u.setVisible(true);
                   
                   LoginPage l = new LoginPage();
                   frame3.dispose();
-//                  l.setVisible(true);
             }
         });
         

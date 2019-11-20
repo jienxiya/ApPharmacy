@@ -6,8 +6,10 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -32,6 +34,8 @@ public class Botica extends JFrame {
         login.setBounds(90, 100, 120, 40);
         JButton register = new JButton("Register");
         register.setBounds(260, 100, 120, 40);
+        
+        
 
         //add to frame
 //        panel.add(label1);
@@ -47,6 +51,8 @@ public class Botica extends JFrame {
         frame1.setLayout(null);
         frame1.setVisible(true);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame1.setLocation(dim.width/3-this.getSize().width/2, dim.height/3-this.getSize().height/3);
         
         login.addActionListener(new ActionListener(){
            @Override
