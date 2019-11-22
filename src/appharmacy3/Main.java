@@ -5,8 +5,7 @@
  */
 package appharmacy3;
 
-import GUI.Botica;
-import GUI.RegisterPage;
+import View.Botica;
 import java.util.Scanner;
 
 /**
