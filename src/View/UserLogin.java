@@ -129,7 +129,5 @@ public class UserLogin extends JFrame{
             }
         });
     }
-    public UserLogin(){
-        
-    }
+    
 }

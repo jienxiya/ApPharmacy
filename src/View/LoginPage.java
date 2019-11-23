@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Account_Management;
 import appharmacy3.*;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -76,21 +77,26 @@ public class LoginPage extends JFrame {
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                flag = true;
+                Account_Management acc = new Account_Management();
                 String email = eField.getText();
                 String pass = pField.getText();
-                User newUser = null;
-                for (int i = 0; i < rose.getAccounts().size(); i++) {
-                    if (email.equals(rose.getAccounts().get(i).getEmail()) && pass.equals(rose.getAccounts().get(i).getPassword())) {
-                        newUser = rose.getAccounts().get(i);
-                    }
+                
+                
+                if(acc.login(email, pass) == true){
+//                    UserLogin u = new UserLogin(); 
                 }
-                if(newUser != null){
-                    UserLogin u = new UserLogin(newUser); 
-                    frame2.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null,"Email or Password is incorrect!");
-                }  
+//                User newUser = null;
+//                for (int i = 0; i < rose.getAccounts().size(); i++) {
+//                    if (email.equals(rose.getAccounts().get(i).getEmail()) && pass.equals(rose.getAccounts().get(i).getPassword())) {
+//                        newUser = rose.getAccounts().get(i);
+//                    }
+//                }
+//                if(newUser != null){
+//                    UserLogin u = new UserLogin(newUser); 
+//                    frame2.dispose();
+//                }else{
+//                    JOptionPane.showMessageDialog(null,"Email or Password is incorrect!");
+//                }  
             }
         });
     }

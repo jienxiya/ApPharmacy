@@ -235,4 +235,8 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JLabel uNameLabel2;
     private javax.swing.JLabel uNameLabel3;
     // End of variables declaration//GEN-END:variables
+
+    public Object uNameField() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
