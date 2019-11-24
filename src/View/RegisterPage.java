@@ -20,8 +20,6 @@ import javax.swing.*;
  */
 public class RegisterPage extends JFrame {
 
-    Boolean flag = false;
-
     public RegisterPage() {
         Pharmacy rose = new Pharmacy();
         rose.addAccounts(rose);

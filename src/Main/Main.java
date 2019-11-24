@@ -24,7 +24,7 @@ public class Main {
         accountCRUD accManagement = new accountCRUD();
         customerBehavior cb = new customerBehavior();
         pharmacistBehavior pb = new pharmacistBehavior();
-        
+
 //        Controller
         Customer_Transaction cm = new Customer_Transaction();
         Pharmacist_Transaction pt = new Pharmacist_Transaction();
@@ -32,7 +32,7 @@ public class Main {
 //        view
         Botica botica = new Botica();
 //        Register reg = new Register();
-        
+
         new Botica();
 
     }

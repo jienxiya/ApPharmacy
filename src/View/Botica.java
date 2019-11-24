@@ -49,7 +49,6 @@ public class Botica extends JFrame {
         login.addActionListener(new ActionListener(){
            @Override
            public void actionPerformed(ActionEvent e) {
-//               loginFlag = true;
                LoginPage page = new LoginPage();
                frame1.dispose();
            }
@@ -58,7 +57,6 @@ public class Botica extends JFrame {
         register.addActionListener(new ActionListener(){
            @Override
            public void actionPerformed(ActionEvent e) {
-//               regFlag = true;
                RegisterPage reg = new RegisterPage();
                frame1.dispose();
            }

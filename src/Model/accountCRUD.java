@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -134,13 +135,9 @@ public class accountCRUD {
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-//            rs = stmt.executeQuery("select * from tbl");
             query = String.format("SELECT * FROM tbl_accounts WHERE Email = '%s'", email);
             rs = stmt.executeQuery(query);
-            //System.out.println(result);
             while (rs.next()) {
-
-//                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
                 dbPass = rs.getString("Password");
 
                 break;
@@ -169,10 +166,7 @@ public class accountCRUD {
             query = String.format("SELECT * FROM tbl_accounts WHERE Email = '%s'", email);
             rs = stmt.executeQuery(query);
             while (rs.next()) {
-                
-//                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
                 userType = rs.getString("UserType");
-                System.out.println("db UseType " + userType);
             }
             con.close();
         } catch (Exception e) {

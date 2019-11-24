@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Customer_Transaction;
 import appharmacy3.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -27,21 +28,23 @@ public class ViewAvailableMeds extends javax.swing.JFrame {
     }
     
     public void addRow(){
-        Pharmacy rose = new Pharmacy();
-        rose.populateMedicine(rose);
-        
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        ArrayList<Medicine> list = rose.getMedicines();
-        Object rowData[] = new Object[6];
-        for( int i = 0; i < list.size(); i++){
-            rowData[0] = list.get(i).getMedID();
-            rowData[1] = list.get(i).getGenericName();
-            rowData[2] = list.get(i).getBrandName();
-            rowData[3] = list.get(i).getType();
-            rowData[4] = list.get(i).getPrice();
-            rowData[5] = list.get(i).getMedStock();
-            model.addRow(rowData);
-        }
+        Customer_Transaction c = new Customer_Transaction();
+        c.availableMeds();
+//        Pharmacy rose = new Pharmacy();
+//        rose.populateMedicine(rose);
+//        
+//        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+//        ArrayList<Medicine> list = rose.getMedicines();
+//        Object rowData[] = new Object[6];
+//        for( int i = 0; i < list.size(); i++){
+//            rowData[0] = list.get(i).getMedID();
+//            rowData[1] = list.get(i).getGenericName();
+//            rowData[2] = list.get(i).getBrandName();
+//            rowData[3] = list.get(i).getType();
+//            rowData[4] = list.get(i).getPrice();
+//            rowData[5] = list.get(i).getMedStock();
+//            model.addRow(rowData);
+//        }
     }
 
     @SuppressWarnings("unchecked")

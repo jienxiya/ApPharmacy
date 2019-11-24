@@ -82,24 +82,11 @@ public class LoginPage extends JFrame {
                 String pass = pField.getText();
 
                 if (acc.login(email, pass) == true) {
-                    JOptionPane.showMessageDialog(null, "Successful.", "Error", JOptionPane.ERROR_MESSAGE);
-//                    UserLogin u = new UserLogin(); 
+                    UserLogin u = new UserLogin(email,pass); 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Failed.", "Error", JOptionPane.ERROR_MESSAGE);
-
+                    JOptionPane.showMessageDialog(null, "Email or Password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-//                User newUser = null;
-//                for (int i = 0; i < rose.getAccounts().size(); i++) {
-//                    if (email.equals(rose.getAccounts().get(i).getEmail()) && pass.equals(rose.getAccounts().get(i).getPassword())) {
-//                        newUser = rose.getAccounts().get(i);
-//                    }
-//                }
-//                if(newUser != null){
-//                    UserLogin u = new UserLogin(newUser); 
-//                    frame2.dispose();
-//                }else{
-//                    JOptionPane.showMessageDialog(null,"Email or Password is incorrect!");
-//                }  
+                frame2.dispose();
             }
         });
     }

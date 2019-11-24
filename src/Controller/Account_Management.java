@@ -34,6 +34,11 @@ public class Account_Management {
     }
     
     public String getUserType(String email, String pass){
-        return acc.getUser(email, pass); 
+        return acc.getUser(email, pass);
+        
+    }
+    
+    public void viewMeds(){
+        
     }
 }
