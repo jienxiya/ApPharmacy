@@ -72,7 +72,7 @@ public class LoginPage extends JFrame {
         frame2.setVisible(true);
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        frame2.setLocation(dim.width/3-this.getSize().width/3, dim.height/3-this.getSize().height/3);
+        frame2.setLocation(dim.width / 3 - this.getSize().width / 3, dim.height / 3 - this.getSize().height / 3);
 
         btnLogin.addActionListener(new ActionListener() {
             @Override
@@ -80,10 +80,13 @@ public class LoginPage extends JFrame {
                 Account_Management acc = new Account_Management();
                 String email = eField.getText();
                 String pass = pField.getText();
-                
-                
-                if(acc.login(email, pass) == true){
+
+                if (acc.login(email, pass) == true) {
+                    JOptionPane.showMessageDialog(null, "Successful.", "Error", JOptionPane.ERROR_MESSAGE);
 //                    UserLogin u = new UserLogin(); 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed.", "Error", JOptionPane.ERROR_MESSAGE);
+
                 }
 //                User newUser = null;
 //                for (int i = 0; i < rose.getAccounts().size(); i++) {

@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Account_Management;
 import appharmacy3.*;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,14 +23,15 @@ import javax.swing.JRadioButton;
  * @author 2ndyrGroupB
  */
 public class UserLogin extends JFrame{
-    public UserLogin(User user){
+    Account_Management acc = new Account_Management();
+    public UserLogin(String email, String Pass){
         Pharmacy rose = new Pharmacy();
         Medicine med = new Medicine();
         
         JFrame frame4 = new JFrame("ApPharmacy");
         JLabel label1;
 
-        if(user instanceof Customer){
+        if(acc.getUserType(email,Pass).equals("Customer")){
             label1 = new JLabel("Log in as Customer" , JLabel.CENTER);
             label1.setBounds(120, 10, 220, 20);
         }else{
@@ -69,7 +71,7 @@ public class UserLogin extends JFrame{
         logout.setBounds(240, 70, 150, 50);
         logout.setActionCommand("logout");
         
-        if(user instanceof Customer){
+        if(acc.getUserType(email,Pass).equals("Customer")){
             add.setText("View Medicine");
             view.setText("Purchase Medicine");
             remove.setText("View Purchases Medicine");
@@ -112,7 +114,7 @@ public class UserLogin extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String option = G1.getSelection().getActionCommand();
-               if (user instanceof Customer){
+               if (acc.getUserType(email,Pass).equals("Customer")){
                    if(option.equals("Add Medicine")){ //The action command is based on the given above. View Available Medicine for Customer side
                        ViewAvailableMeds v = new ViewAvailableMeds();
                        v.setVisible(true);

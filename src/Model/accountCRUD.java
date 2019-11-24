@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class accountCRUD {
 
-
     public void addAccount(String uName, String email, String userType, int age, String pass) {
 
         try {
@@ -23,7 +22,7 @@ public class accountCRUD {
             Statement stmt = null;
             ResultSet rs = null;
             String query;
-            
+
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
@@ -45,7 +44,7 @@ public class accountCRUD {
             } else {
                 JOptionPane.showMessageDialog(null, "Sorry! Underage are not allowed to register.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
+
             while (rs.next()) {
                 System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
             }
@@ -127,7 +126,8 @@ public class accountCRUD {
         Statement stmt = null;
         ResultSet rs = null;
         String query;
-        User newUser = null;
+        String dbPass = "";
+        boolean result = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
@@ -135,16 +135,49 @@ public class accountCRUD {
 
             stmt = con.createStatement();
 //            rs = stmt.executeQuery("select * from tbl");
-            query = String.format("SELECT Email, Password FROM tbl_accounts WHERE Email = '%s' && Password = '%s'", email, pass);
-            int result = stmt.executeUpdate(query);
-            System.out.println(result);
+            query = String.format("SELECT * FROM tbl_accounts WHERE Email = '%s'", email);
+            rs = stmt.executeQuery(query);
+            //System.out.println(result);
             while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+
+//                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                dbPass = rs.getString("Password");
+
+                break;
             }
             con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
-        return true;
+        if (dbPass.equals(pass)) {
+            result = true;
+        }
+        return result;
+    }
+    
+    public String getUser(String email, String pass){
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query;
+        String userType = "";
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
+            stmt = con.createStatement();
+            query = String.format("SELECT * FROM tbl_accounts WHERE Email = '%s'", email);
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                
+//                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                userType = rs.getString("UserType");
+                System.out.println("db UseType " + userType);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return userType;
     }
 }

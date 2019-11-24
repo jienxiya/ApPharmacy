@@ -28,8 +28,12 @@ public class Account_Management {
         if(email.equals("") || pass.equals("")){
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
-            acc.login(email, pass);
+            return acc.login(email, pass);
         }
-        return true;
+        return false;
+    }
+    
+    public String getUserType(String email, String pass){
+        return acc.getUser(email, pass); 
     }
 }
