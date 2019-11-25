@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author pallerma_sd2022
  */
 public class accountCRUD {
-
+    public accountCRUD(){};
     public void addAccount(String uName, String email, String userType, int age, String pass) {
 
         try {
@@ -151,8 +151,8 @@ public class accountCRUD {
         }
         return result;
     }
-    
-    public String getUser(String email, String pass){
+
+    public String getUser(String email, String pass) {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -173,5 +173,5 @@ public class accountCRUD {
             System.out.println(e);
         }
         return userType;
-    }
+    }  
 }

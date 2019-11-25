@@ -24,7 +24,7 @@ public class ViewAvailableMeds extends javax.swing.JFrame {
      */
     public ViewAvailableMeds() {
         initComponents();
-        addRow();       
+        addRow();   
     }
     
     public void addRow(){

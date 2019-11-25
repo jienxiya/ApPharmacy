@@ -8,7 +8,9 @@ package Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,28 +42,33 @@ public class pharmacistBehavior {
         }
     }
     
-    public void viewAvailableMedicine() {
+    public ArrayList<ArrayList> viewAvailableMedicine() {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query;
-        
+        ArrayList<ArrayList> meds = new ArrayList<>();
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-//            query = String.format("INSERT INTO tbl_medicine (genericName, brandName, medicineType, price,stock) VALUES ('%s','%s','%s','%f','$d')", gName, bName, medType, price, stock);
-            int result = stmt.executeUpdate("SELECT * FROM  tbl_medicines");
-            System.out.println(result);
+            rs = stmt.executeQuery("SELECT * FROM  tbl_medicines");
             while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                ArrayList medicines = new ArrayList();
+                medicines.add(rs.getString("genericName"));
+                medicines.add(rs.getString("brandName"));
+                medicines.add(rs.getString("medType"));
+                medicines.add(rs.getString("price"));
+                medicines.add(rs.getString("stock"));
+                meds.add(medicines);
             }
             con.close();
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+        return meds;
     }
     
     public void removeMedicine(int med_id) {

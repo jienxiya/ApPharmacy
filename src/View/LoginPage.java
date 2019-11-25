@@ -26,7 +26,6 @@ import javax.swing.JTextField;
 public class LoginPage extends JFrame {
 
     JFrame frame2 = new JFrame("ApPharmacy");
-    Boolean flag = false;
 
     public LoginPage() {
         Pharmacy rose = new Pharmacy();
@@ -82,7 +81,8 @@ public class LoginPage extends JFrame {
                 String pass = pField.getText();
 
                 if (acc.login(email, pass) == true) {
-                    UserLogin u = new UserLogin(email,pass); 
+                    UserLogin u = new UserLogin(); 
+                    u.userLoginGUI(email, pass);
                 } else {
                     JOptionPane.showMessageDialog(null, "Email or Password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
                 }

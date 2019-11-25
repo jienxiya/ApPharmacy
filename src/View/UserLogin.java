@@ -7,6 +7,7 @@ package View;
 
 import Controller.Account_Management;
 import Controller.Customer_Transaction;
+import Controller.Pharmacist_Transaction;
 import appharmacy3.*;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -28,10 +29,12 @@ public class UserLogin extends JFrame {
     Account_Management acc = new Account_Management();
     JRadioButton add, view, remove, logout, pay;
     ButtonGroup G1 = new ButtonGroup();
+    static String option = "";
 
-    public UserLogin(String email, String Pass) {
-        Pharmacy rose = new Pharmacy();
-        Medicine med = new Medicine();
+    public UserLogin() {
+    }
+
+    public void userLoginGUI(String email, String Pass) {
 
         JFrame frame4 = new JFrame("ApPharmacy");
         JLabel label1;
@@ -115,11 +118,18 @@ public class UserLogin extends JFrame {
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                option = G1.getSelection().getActionCommand();
+                
                 Customer_Transaction c = new Customer_Transaction();
-                c.availableMeds();
-                System.out.println("Available Meds " + c.availableMeds());
-                ViewAvailableMeds v = new ViewAvailableMeds();
-                v.setVisible(true);
+                Pharmacist_Transaction p = new Pharmacist_Transaction();
+                if (acc.getUserType(email, Pass).equals("Pharmacist")) {
+                    p.pharmaTransaction();
+                }else{
+                    c.cusTransaction();
+                }
+//                System.out.println("Available Meds " + c.availableMeds());
+//                ViewAvailableMeds v = new ViewAvailableMeds();
+//                v.setVisible(true);
 //                String option = G1.getSelection().getActionCommand();
 //               if (acc.getUserType(email,Pass).equals("Customer")){
 //                   if(option.equals("Add Medicine")){ //The action command is based on the given above. View Available Medicine for Customer side
@@ -140,8 +150,7 @@ public class UserLogin extends JFrame {
 
     }
 
-    public String geTransaction() {
-        return G1.getSelection().getActionCommand();
+    public String cusTrans() {
+        return option;
     }
-
 }

@@ -37,8 +37,4 @@ public class Account_Management {
         return acc.getUser(email, pass);
         
     }
-    
-    public void viewMeds(){
-        
-    }
 }

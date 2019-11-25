@@ -10,34 +10,35 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
  * @author pallerma_sd2022
  */
 public class customerBehavior {
-    public Object[][] viewAvailableMedicine() {
+
+    public ArrayList<ArrayList> viewAvailableMedicine() {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        Object[][] meds = new Object[10][5];
-        
+        ArrayList<ArrayList> meds = new ArrayList<>();
+
         try {
-            int cols = 0;
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
             rs = stmt.executeQuery("SELECT * FROM  tbl_medicines");
-//            System.out.println(result);
             while (rs.next()) {
-                meds[cols][0] = rs.getString("genericName");
-                meds[cols][1] = rs.getString("brandName");
-                meds[cols][2] = rs.getString("medType");
-                meds[cols][3] = rs.getString("price");
-                meds[cols][4] = rs.getString("stock");
-                ++cols;
+                ArrayList medicines = new ArrayList();
+                medicines.add(rs.getString("genericName"));
+                medicines.add(rs.getString("brandName"));
+                medicines.add(rs.getString("medType"));
+                medicines.add(rs.getString("price"));
+                medicines.add(rs.getString("stock"));
+                meds.add(medicines);
             }
             con.close();
         } catch (ClassNotFoundException | SQLException e) {
@@ -45,26 +46,36 @@ public class customerBehavior {
         }
         return meds;
     }
-    
-    public void purchaseMedicine(int med_id, int qty) {
+
+    public ArrayList<ArrayList> purchaseMedicine(int med_id, int qty) {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        
+        ArrayList<ArrayList> purchasedMeds = new ArrayList<>();
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-            int result = stmt.executeUpdate("SELECT * FROM  tbl_medicines");
-            System.out.println(result);
+            String query = String.format("SELECT * FROM  tbl_medicines WHERE id_medicine='%d'", med_id);
+            rs = stmt.executeQuery(query);
             while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                ArrayList medicines = new ArrayList();
+                medicines.add(rs.getString("genericName"));
+                medicines.add(rs.getString("brandName"));
+                medicines.add(rs.getString("medType"));
+                medicines.add(rs.getString("price"));
+                medicines.add(qty);
+                purchasedMeds.add(medicines);
             }
             con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
+        return purchasedMeds;
     }
+    
+  
 }

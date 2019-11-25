@@ -16,6 +16,7 @@ public class PurchasedMeds extends javax.swing.JFrame {
 
     Pharmacy rose = new Pharmacy();
     Customer c = new Customer();
+    static int purchasedMedId = 0;
     
     
     public PurchasedMeds() {
@@ -138,16 +139,16 @@ public class PurchasedMeds extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         String id = idField.getText();
-        int result = Integer.parseInt(id);		
+        int purchasedMedId = Integer.parseInt(id);		
         String qty = qtyField.getText();
         int r = Integer.parseInt(qty);
         rose.populateMedicine(rose);
         for(int i = 0; i < rose.getMedicines().size(); i++){
-            if(rose.getMedicines().get(i).getMedID() == result){
+            if(rose.getMedicines().get(i).getMedID() == purchasedMedId){
                 if(rose.getMedicines().get(i).getMedStock() > r ){
                     int remainingStock = rose.getMedicines().get(i).getMedStock() - r;
                     rose.getMedicines().get(i).setMedStock(remainingStock);
-                    c.getListOfPurchasedMed().add(rose.getMedicines().get(result));
+                    c.getListOfPurchasedMed().add(rose.getMedicines().get(purchasedMedId));
                 }
             }
         }
@@ -191,6 +192,11 @@ public class PurchasedMeds extends javax.swing.JFrame {
                 new PurchasedMeds().setVisible(true);
             }
         });
+    }
+    
+     public int getpurchasedMedId(){
+         System.out.println("purchased med id " + purchasedMedId);
+        return purchasedMedId;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

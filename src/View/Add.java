@@ -15,9 +15,8 @@ import java.awt.Toolkit;
  */
 public class Add extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Add
-     */
+    static String genericName,brandName,medicineType,med_price,med_stock;
+    
     public Add() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -246,7 +245,7 @@ public class Add extends javax.swing.JFrame {
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         Pharmacist_Transaction a = new Pharmacist_Transaction();
-        String genericName,brandName,medicineType,med_price,med_stock;
+       
         genericName = gName.getText();
         brandName = bName.getText();
         medicineType = buttonGroup1.getSelection().getActionCommand();
@@ -293,6 +292,23 @@ public class Add extends javax.swing.JFrame {
             }
         });
     }
+    
+//    public String getGenericName(){
+//        System.out.println("gName" + genericName);
+//        return this.genericName;
+//    }
+//    public String getBrandName(){
+//        return this.brandName;
+//    }
+//    public String getMedType(){
+//        return this.medicineType;
+//    }
+//    public String getMedPrice(){
+//        return this.med_price;
+//    }
+//    public String getMedStock(){
+//        return this.med_stock;
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
