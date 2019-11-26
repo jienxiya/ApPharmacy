@@ -8,6 +8,7 @@ package Controller;
 import Model.customerBehavior;
 import Model.pharmacistBehavior;
 import View.Add;
+import View.Remove;
 import View.UserLogin;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,26 +23,32 @@ import javax.swing.table.DefaultTableModel;
  * @author pallerma_sd2022
  */
 public class Pharmacist_Transaction {
+
     pharmacistBehavior a = new pharmacistBehavior();
     Add add = new Add();
+    
+    Remove remove = new Remove();
     UserLogin u = new UserLogin();
     
     String s = u.cusTrans();
     
-
     public void pharmaTransaction() {
         if (s.equals("Add Medicine")) {
             add.setVisible(true);
-        }else if(s.equals("View Medicine")){
+        } else if (s.equals("View Medicine")) {
             this.availableMeds();
+        } else if (s.equals("Remove Medicine")) {
+            this.removeMeds(remove.getMedID());
         }
     }
-    public void addMeds(String gName, String bName, String medType, String price, String stock){
+
+    public void addMeds(String gName, String bName, String medType, String price, String stock) {
         
-        if(gName.equals("") || bName.equals("") || medType.equals("") || price.equals("")|| stock.equals("")){
+        if (gName.equals("") || bName.equals("") || medType.equals("") || price.equals("") || stock.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         a.addMedicine(gName, bName, medType, Integer.valueOf(price), Integer.valueOf(stock));
+        JOptionPane.showMessageDialog(null, "Successfully Added.", "", JOptionPane.PLAIN_MESSAGE);
     }
     
     public void availableMeds() {
@@ -73,5 +80,14 @@ public class Pharmacist_Transaction {
         table.getTableHeader().setFont(font);
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Available Medicines", JOptionPane.PLAIN_MESSAGE
         );
+    }
+    
+    public void removeMeds(int med_id) {
+        if (med_id != 0) {
+            a.removeMedicine(med_id);
+            JOptionPane.showMessageDialog(null, "Successfully Removed!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nothing to remove.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
