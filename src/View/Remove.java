@@ -12,8 +12,6 @@ import Controller.Pharmacist_Transaction;
  * @author pallerma_sd2022
  */
 public class Remove extends javax.swing.JFrame {
-
-    static int medID;
     
     public Remove() {
         initComponents();
@@ -132,7 +130,7 @@ public class Remove extends javax.swing.JFrame {
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         Pharmacist_Transaction p = new Pharmacist_Transaction();
         String id = med_id.getText();
-        medID = Integer.parseInt(id);
+        int medID = Integer.parseInt(id);
         p.removeMeds(medID);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
@@ -172,9 +170,6 @@ public class Remove extends javax.swing.JFrame {
         });
     }
     
-    public int getMedID(){
-        return medID;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bName;

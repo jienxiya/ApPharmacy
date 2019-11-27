@@ -23,6 +23,7 @@ public class Customer_Transaction {
 
     customerBehavior cusMethods = new customerBehavior();
     UserLogin u = new UserLogin();
+    PurchasedMeds purchase = new PurchasedMeds();
     String s = u.cusTrans();
     
 
@@ -30,22 +31,23 @@ public class Customer_Transaction {
         if (s.equals("Add Medicine")) {
             this.availableMeds();
         }else if(s.equals("View Medicine")){
-            this.purchasedMeds(0, 0);
+            purchase.setVisible(true);
         }
     }
 
     public void availableMeds() {
         ArrayList<ArrayList> data = cusMethods.viewAvailableMedicine();
-        Object[][] rows = new Object[data.size()][5];
+        Object[][] rows = new Object[data.size()][6];
         for (int index = 0; index < data.size(); index++) {
             rows[index][0] = data.get(index).get(0);
             rows[index][1] = data.get(index).get(1);
             rows[index][2] = data.get(index).get(2);
             rows[index][3] = data.get(index).get(3);
             rows[index][4] = data.get(index).get(4);
+            rows[index][5] = data.get(index).get(5);
         }
         Object[] cols = {
-            "Generic name", "Brand name", "Medicine Type", "Price", "Stock"
+            "Medicine ID", "Generic Name", "Brand Name", "Medicine Type", "Price", "Stock"
         };
         DefaultTableModel tableModel = new DefaultTableModel(rows, cols) {
             @Override
@@ -61,11 +63,10 @@ public class Customer_Transaction {
         table.setRowHeight(25);
         table.getTableHeader().setPreferredSize(new Dimension(100, 30));
         table.getTableHeader().setFont(font);
-        JOptionPane.showMessageDialog(null, new JScrollPane(table), "Available Medicines", JOptionPane.PLAIN_MESSAGE
-        );
+        JOptionPane.showMessageDialog(null, new JScrollPane(table), "Available Medicines", JOptionPane.PLAIN_MESSAGE);
     }
     
-    public void purchasedMeds(int med_id, int qty) {
+    public void viewPurchasedMeds(int med_id, int qty) {
         ArrayList<ArrayList> data = cusMethods.purchaseMedicine(med_id, qty);
         Object[][] rows = new Object[data.size()][5];
         for (int index = 0; index < data.size(); index++) {
@@ -94,5 +95,13 @@ public class Customer_Transaction {
         table.getTableHeader().setFont(font);
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Purchased Medicines", JOptionPane.PLAIN_MESSAGE
         );
+    }
+    
+    public void purchaseMeds(String medID,String qty){
+        if(medID.equals("") || qty.equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            cusMethods.purchaseMedicine(Integer.valueOf(medID), Integer.valueOf(qty));
+        }
     }
 }

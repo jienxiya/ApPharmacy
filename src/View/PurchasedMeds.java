@@ -6,6 +6,7 @@
 
 package View;
 
+import Controller.Customer_Transaction;
 import appharmacy3.*;
 
 /**
@@ -138,20 +139,11 @@ public class PurchasedMeds extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        String id = idField.getText();
-        int purchasedMedId = Integer.parseInt(id);		
+        Customer_Transaction c = new Customer_Transaction();
+        String id = idField.getText();		
         String qty = qtyField.getText();
-        int r = Integer.parseInt(qty);
-        rose.populateMedicine(rose);
-        for(int i = 0; i < rose.getMedicines().size(); i++){
-            if(rose.getMedicines().get(i).getMedID() == purchasedMedId){
-                if(rose.getMedicines().get(i).getMedStock() > r ){
-                    int remainingStock = rose.getMedicines().get(i).getMedStock() - r;
-                    rose.getMedicines().get(i).setMedStock(remainingStock);
-                    c.getListOfPurchasedMed().add(rose.getMedicines().get(purchasedMedId));
-                }
-            }
-        }
+        
+        c.purchaseMeds(id, qty);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 

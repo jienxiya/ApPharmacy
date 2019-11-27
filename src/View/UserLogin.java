@@ -81,7 +81,7 @@ public class UserLogin extends JFrame {
             add.setText("Add Medicine");
             view.setText("View Medicine");
             remove.setText("Remove Medicine");
-            pay.setText("Update Medicine Stock");
+            pay.setText("Update Medicine");
             logout.setText("Logout");
         } else {
             add.setText("View Medicine");

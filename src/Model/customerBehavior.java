@@ -33,6 +33,7 @@ public class customerBehavior {
             rs = stmt.executeQuery("SELECT * FROM  tbl_medicines");
             while (rs.next()) {
                 ArrayList medicines = new ArrayList();
+                medicines.add(rs.getString("id_medicine"));
                 medicines.add(rs.getString("genericName"));
                 medicines.add(rs.getString("brandName"));
                 medicines.add(rs.getString("medType"));
@@ -46,6 +47,10 @@ public class customerBehavior {
         }
         return meds;
     }
+
+//    public void purchaseMeds(int med_id, int qty) {
+//        
+//    }
 
     public ArrayList<ArrayList> purchaseMedicine(int med_id, int qty) {
         Connection con = null;
@@ -63,12 +68,18 @@ public class customerBehavior {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
                 ArrayList medicines = new ArrayList();
+                medicines.add(rs.getString("id_medicine"));
                 medicines.add(rs.getString("genericName"));
                 medicines.add(rs.getString("brandName"));
                 medicines.add(rs.getString("medType"));
                 medicines.add(rs.getString("price"));
                 medicines.add(qty);
                 purchasedMeds.add(medicines);
+                
+                this.addPurchasedMeds(rs.getString("genericName"), rs.getString("brandName"), rs.getString("medType"), Double.valueOf(rs.getString("price")), qty);
+                System.out.println("Added to tbl_purchasedmedicines successfully");
+                this.updateStock(med_id, (Integer.valueOf(rs.getString("stock")) - qty));
+                System.out.println("new Stock "+ (Integer.valueOf(rs.getString("stock")) - qty));
             }
             con.close();
         } catch (Exception e) {
@@ -77,5 +88,49 @@ public class customerBehavior {
         return purchasedMeds;
     }
     
-  
+    public void addPurchasedMeds(String gName, String bName, String medType, double price, int stock){
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
+
+            stmt = con.createStatement();
+            query = String.format("INSERT INTO tbl_purchasedmedicines (genericName, brandName, medType, price,stock) VALUES ('%s','%s','%s','%f','%d')", gName, bName, medType, price, stock);
+            int result = stmt.executeUpdate(query);
+            System.out.println(result);
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void updateStock(int med_id, int qty){
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
+
+            stmt = con.createStatement();
+            query = String.format("UPDATE tbl_medicines SET stock = '%d' WHERE id_medicine = '%d'",med_id ,qty);
+            int result = stmt.executeUpdate(query);
+            System.out.println(result);
+            while(rs.next()){
+                
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }

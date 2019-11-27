@@ -33,9 +33,9 @@ public class pharmacistBehavior {
             query = String.format("INSERT INTO tbl_medicines (genericName, brandName, medType, price,stock) VALUES ('%s','%s','%s','%f','%d')", gName, bName, medType, price, stock);
             int result = stmt.executeUpdate(query);
             System.out.println(result);
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            }
+//            while (rs.next()) {
+//                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+//            }
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -57,6 +57,7 @@ public class pharmacistBehavior {
             rs = stmt.executeQuery("SELECT * FROM  tbl_medicines");
             while (rs.next()) {
                 ArrayList medicines = new ArrayList();
+                medicines.add(rs.getString("id_medicine"));
                 medicines.add(rs.getString("genericName"));
                 medicines.add(rs.getString("brandName"));
                 medicines.add(rs.getString("medType"));
@@ -87,16 +88,16 @@ public class pharmacistBehavior {
             query = String.format("DELETE FROM tbl_medicines where id_medicine = %d", med_id);
             int result = stmt.executeUpdate(query);
             System.out.println(result);
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            }
+//            while (rs.next()) {
+//                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+//            }
             con.close();
         } catch (Exception e) {
             System.out.println(e);
         }
     }
     
-    public void updateMedicineStock(int stock,int med_id) {
+    public void updateMedicine(int medID, String gName, String bName, double price, int stock) {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -109,12 +110,12 @@ public class pharmacistBehavior {
 
             stmt = con.createStatement();
 //            rs = stmt.executeQuery("select * from tbl");
-            query = String.format("UPDATE tbl_medicines SET stock = '%d' WHERE id_account = '%d'",stock,med_id);
+            query = String.format("UPDATE tbl_medicines SET genericName = '%s', brandName = '%s', price = '%f', stock = '%d' WHERE id_medicine = '%d'",gName,bName,price,stock,medID);
             int result = stmt.executeUpdate(query);
             System.out.println(result);
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            }
+//            while (result != 0) {
+//                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+//            }
             con.close();
         } catch (Exception e) {
             System.out.println(e);
