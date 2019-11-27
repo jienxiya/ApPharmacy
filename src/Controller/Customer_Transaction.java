@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import View.*;
+import static java.lang.System.exit;
 
 /**
  *
@@ -24,14 +25,21 @@ public class Customer_Transaction {
     customerBehavior cusMethods = new customerBehavior();
     UserLogin u = new UserLogin();
     PurchasedMeds purchase = new PurchasedMeds();
+    Pay pay = new Pay();
     String s = u.cusTrans();
     
 
     public void cusTransaction() {
         if (s.equals("Add Medicine")) {
             this.availableMeds();
-        }else if(s.equals("View Medicine")){
+        } else if (s.equals("View Medicine")) {
             purchase.setVisible(true);
+        } else if (s.equals("Remove Medicine")) {
+            this.viewPurchasedMeds();
+        } else if(s.equals("logout")){
+            this.logout();
+        }else{
+            pay.setVisible(true);
         }
     }
 
@@ -65,19 +73,20 @@ public class Customer_Transaction {
         table.getTableHeader().setFont(font);
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Available Medicines", JOptionPane.PLAIN_MESSAGE);
     }
-    
-    public void viewPurchasedMeds(int med_id, int qty) {
-        ArrayList<ArrayList> data = cusMethods.purchaseMedicine(med_id, qty);
-        Object[][] rows = new Object[data.size()][5];
+
+    public void viewPurchasedMeds() {
+        ArrayList<ArrayList> data = cusMethods.viewPurchasedMedicine();
+        Object[][] rows = new Object[data.size()][6];
         for (int index = 0; index < data.size(); index++) {
             rows[index][0] = data.get(index).get(0);
             rows[index][1] = data.get(index).get(1);
             rows[index][2] = data.get(index).get(2);
             rows[index][3] = data.get(index).get(3);
             rows[index][4] = data.get(index).get(4);
+            rows[index][5] = data.get(index).get(5);
         }
         Object[] cols = {
-            "Generic name", "Brand name", "Medicine Type", "Price", "Stock"
+            "Medicine ID", "Generic name", "Brand name", "Medicine Type", "Price", "Stock"
         };
         DefaultTableModel tableModel = new DefaultTableModel(rows, cols) {
             @Override
@@ -96,12 +105,30 @@ public class Customer_Transaction {
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Purchased Medicines", JOptionPane.PLAIN_MESSAGE
         );
     }
-    
-    public void purchaseMeds(String medID,String qty){
-        if(medID.equals("") || qty.equals("")){
+
+    public void purchaseMeds(String medID, String qty) {
+        if (medID.equals("") || qty.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
+        } else {
             cusMethods.purchaseMedicine(Integer.valueOf(medID), Integer.valueOf(qty));
         }
+    }
+    
+    public void pay(String bName, String money){
+        if(bName.equals("") || money.equals("")){
+            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            cusMethods.pay(bName, Double.valueOf(money));
+        }
+    }
+    
+    public void logout() {
+        int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?");
+        int yes = JOptionPane.YES_OPTION;
+
+        if (option == yes) {
+            JOptionPane.showMessageDialog(null, "Thank you for visiting ApPharmacy. Come Again! ");
+        }
+        exit(1);
     }
 }

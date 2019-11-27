@@ -18,6 +18,7 @@ public class PurchasedMeds extends javax.swing.JFrame {
     Pharmacy rose = new Pharmacy();
     Customer c = new Customer();
     static int purchasedMedId = 0;
+    static int qnty = 0;
     
     
     public PurchasedMeds() {
@@ -142,7 +143,8 @@ public class PurchasedMeds extends javax.swing.JFrame {
         Customer_Transaction c = new Customer_Transaction();
         String id = idField.getText();		
         String qty = qtyField.getText();
-        
+        purchasedMedId = Integer.parseInt(id);
+        qnty = Integer.parseInt(qty);
         c.purchaseMeds(id, qty);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
@@ -186,9 +188,12 @@ public class PurchasedMeds extends javax.swing.JFrame {
         });
     }
     
-     public int getpurchasedMedId(){
-         System.out.println("purchased med id " + purchasedMedId);
+    public int getpurchasedMedId(){
         return purchasedMedId;
+    }
+    
+    public int getpurchasedQty(){
+        return qnty;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
