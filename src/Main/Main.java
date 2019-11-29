@@ -30,10 +30,12 @@ public class Main {
         Pharmacist_Transaction pt = new Pharmacist_Transaction();
 
 //        view
-        Botica botica = new Botica();
+//        Botica botica = new Botica();
 //        Register reg = new Register();
 
         new Botica();
+        
+         
 
     }
 }

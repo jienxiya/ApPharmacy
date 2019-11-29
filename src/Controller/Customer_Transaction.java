@@ -27,7 +27,6 @@ public class Customer_Transaction {
     PurchasedMeds purchase = new PurchasedMeds();
     Pay pay = new Pay();
     String s = u.cusTrans();
-    
 
     public void cusTransaction() {
         if (s.equals("Add Medicine")) {
@@ -36,9 +35,9 @@ public class Customer_Transaction {
             purchase.setVisible(true);
         } else if (s.equals("Remove Medicine")) {
             this.viewPurchasedMeds();
-        } else if(s.equals("logout")){
+        } else if (s.equals("logout")) {
             this.logout();
-        }else{
+        } else {
             pay.setVisible(true);
         }
     }
@@ -113,15 +112,22 @@ public class Customer_Transaction {
             cusMethods.purchaseMedicine(Integer.valueOf(medID), Integer.valueOf(qty));
         }
     }
-    
-    public void pay(String bName, String money){
-        if(bName.equals("") || money.equals("")){
+
+//    public void pay(String email, String bName, String money){
+//        if(bName.equals("") || money.equals("")){
+//            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+//        }else{
+//            cusMethods.pay(email,bName, Double.valueOf(money));
+//        }
+//    }
+    public void pay(String email, String bName, String money) {
+        if (bName.equals("") || money.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-            cusMethods.pay(bName, Double.valueOf(money));
+        } else {
+            cusMethods.pay(email, bName, Double.valueOf(money));
         }
     }
-    
+
     public void logout() {
         int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?");
         int yes = JOptionPane.YES_OPTION;

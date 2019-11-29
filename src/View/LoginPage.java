@@ -26,8 +26,12 @@ import javax.swing.JTextField;
 public class LoginPage extends JFrame {
 
     JFrame frame2 = new JFrame("ApPharmacy");
+    static String returnEmail = "";
 
-    public LoginPage() {
+    public LoginPage(){
+    
+    }
+    public void LoginPage() {
         Pharmacy rose = new Pharmacy();
         rose.addAccounts(rose);
 
@@ -78,6 +82,7 @@ public class LoginPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Account_Management acc = new Account_Management();
                 String email = eField.getText();
+                returnEmail = email;
                 String pass = pField.getText();
 
                 if (acc.login(email, pass) == true) {
@@ -89,5 +94,9 @@ public class LoginPage extends JFrame {
                 frame2.dispose();
             }
         });
+    }
+    
+    public String getEmail(){
+        return returnEmail;
     }
 }

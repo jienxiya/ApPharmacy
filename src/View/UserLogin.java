@@ -5,10 +5,7 @@
  */
 package View;
 
-import Controller.Account_Management;
-import Controller.Customer_Transaction;
-import Controller.Pharmacist_Transaction;
-import appharmacy3.*;
+import Controller.*;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -127,24 +124,6 @@ public class UserLogin extends JFrame {
                 }else{
                     c.cusTransaction();
                 }
-//                System.out.println("Available Meds " + c.availableMeds());
-//                ViewAvailableMeds v = new ViewAvailableMeds();
-//                v.setVisible(true);
-//                String option = G1.getSelection().getActionCommand();
-//               if (acc.getUserType(email,Pass).equals("Customer")){
-//                   if(option.equals("Add Medicine")){ //The action command is based on the given above. View Available Medicine for Customer side
-//                       ViewAvailableMeds v = new ViewAvailableMeds();
-//                       v.setVisible(true);
-////                       frame4.setVisible(false);
-//                   }else if(option.equals("View Medicine")){ //Purchase Medicine
-//                       PurchasedMeds p = new PurchasedMeds();
-//                       p.setVisible(true);
-////                       frame4.setVisible(false);
-//                   }else if(option.equals("Remove Medicine")){ // View Purchased Medicine
-//                       ViewPurchased vp = new ViewPurchased();
-//                       vp.setVisible(true);
-//                   }
-//               }
             }
         });
 

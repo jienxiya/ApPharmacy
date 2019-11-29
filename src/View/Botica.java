@@ -50,6 +50,7 @@ public class Botica extends JFrame {
            @Override
            public void actionPerformed(ActionEvent e) {
                LoginPage page = new LoginPage();
+               page.LoginPage();
                frame1.dispose();
            }
        });
