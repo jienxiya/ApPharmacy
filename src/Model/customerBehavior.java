@@ -18,8 +18,9 @@ import javax.swing.JOptionPane;
  *
  * @author pallerma_sd2022
  */
-public class customerBehavior {
+public class customerBehavior implements CommonModelMethods{
 
+    @Override
     public ArrayList<ArrayList> viewAvailableMedicine() {
         Connection con = null;
         Statement stmt = null;
@@ -73,10 +74,6 @@ public class customerBehavior {
                 medicines.add(rs.getString("medType"));
                 medicines.add(rs.getString("price"));
                 medicines.add(rs.getString("stock"));
-//                medicines.add(rs.getString("id_medicine"));
-//                medicines.add(rs.getString("brandName"));
-//                medicines.add(rs.getString("price"));
-//                medicines.add(rs.getString("stock"));
                 meds.add(medicines);
             }
             con.close();
@@ -175,44 +172,12 @@ public class customerBehavior {
         }
     }
 
-//    public double pay(String email, String bName, double money) {
-//        Connection con = null;
-//        Statement stmt = null;
-//        ResultSet rs = null;
-//        double bill = 0, price = 0;
-//
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            con = DriverManager.getConnection(
-//                    "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
-//
-//            stmt = con.createStatement();
-////            String query = String.format("SELECT * FROM  tbl_purchasedmedicines WHERE brandName = '%s'", bName);
-//            String query = String.format("SELECT Email,userType,brandName FROM  tbl_accounts a JOIN tbl_purchasedmedicine pm  ON a.Email = pm.Email WHERE brandName = '%s'", bName);
-//            rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                int qty = Integer.valueOf(rs.getString("stock"));
-//                price = Double.valueOf(rs.getString("price")) * qty;
-//                if (money < price) {
-//                    JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
-//                } else{
-//                    bill = money - price;
-//                    this.removePaidMeds(bName);
-//                    JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + bill);
-//                }
-//            }
-//
-//            con.close();
-//        } catch (ClassNotFoundException | SQLException e) {
-//            System.out.println(e);
-//        }
-//        return bill;
-//    }
     public double pay(String email, String bName, double money) {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
         double bill = 0, price = 0;
+        String userType = null;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -220,53 +185,36 @@ public class customerBehavior {
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-            String query = String.format("SELECT * FROM  tbl_purchasedmedicines WHERE brandName = '%s'", bName);
-//            String query = String.format("SELECT Email,userType,brandName FROM  tbl_accounts a JOIN tbl_purchasedmedicine pm  ON a.Email = pm.Email WHERE brandName = '%s'", bName);
+            String query = String.format("SELECT * FROM  tbl_purchasedmedicine WHERE brandName = '%s'", bName);
             rs = stmt.executeQuery(query);
             while (rs.next()) {
                 int qty = Integer.valueOf(rs.getString("stock"));
                 price = Double.valueOf(rs.getString("price"));
-//                if (money < price) {
-//                    JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
-//                } else{
-//                    bill = money - price;
-//                    this.removePaidMeds(bName);
-//                    JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + bill);
-//                }
-//                System.out.println("db " +rs.getString("brandName"));
-//                System.out.println("input " +bName);
-                if (rs.getString("brandName").equals(bName)) {
-                    System.out.println("AMBOTTTTTTTT");
-                    ResultSet rs2 = stmt.executeQuery("SELECT * FROM tbl_accounts");
-                    String user = rs2.getString("UserType");
-                    System.out.println(user);
-                    bill = price * qty;
-                    if (user.equals("Adult")) {
-                        if (money == bill) {
-//                              JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
-                            JOptionPane.showMessageDialog(null, "Succesfully Paid!");
-                        } else if (money > bill) {
-                            bill = money - bill;
-                            this.removePaidMeds(bName);
-                            JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + bill);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else if (user.equals("SeniorCitizen")) {
-                        if (money == bill) {
-
-                        } else if (money > bill) {
-                            double discount = bill * 0.20;
-                            double change = money - (bill - discount);
-                            this.removePaidMeds(bName);
-                            JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + change);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
-                        }
+                userType = this.getUserType(email);
+                bill = price * qty;
+                if (userType.equals("Adult")) {
+                    if (money == bill) {
+                        JOptionPane.showMessageDialog(null, "Succesfully Paid!");
+                    } else if (money > bill) {
+                        bill = money - bill;
+                        this.removePaidMeds(bName);
+                        JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + bill);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else if (userType.equals("SeniorCitizen")) {
+                    if (money == bill) {
+                        JOptionPane.showMessageDialog(null, "Succesfully Paid!");
+                    } else if (money > bill) {
+                        double discount = bill * 0.20;
+                        double change = money - (bill - discount);
+                        this.removePaidMeds(bName);
+                        JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + change);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
-
             con.close();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
@@ -285,8 +233,51 @@ public class customerBehavior {
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-            String query = String.format("DELETE FROM  tbl_purchasedmedicines WHERE brandName = '%s'", bName);
+            String query = String.format("DELETE FROM  tbl_purchasedmedicine WHERE brandName = '%s'", bName);
             int result = stmt.executeUpdate(query);
+
+            con.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public String getUserType(String email) {
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String userType = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
+
+            stmt = con.createStatement();
+            String query = String.format("SELECT * FROM tbl_accounts WHERE Email = '%s'", email);
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                userType = rs.getString("UserType");
+            }
+            con.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e);
+        }
+        return userType;
+    }
+    
+    public void logout(){
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
+
+            stmt = con.createStatement();
+            int result = stmt.executeUpdate("DELETE FROM  tbl_purchasedmedicine");
 
             con.close();
         } catch (ClassNotFoundException | SQLException e) {

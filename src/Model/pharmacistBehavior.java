@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author pallerma_sd2022
  */
-public class pharmacistBehavior {
+public class pharmacistBehavior implements CommonModelMethods{
 
     public void addMedicine(String gName, String bName, String medType, double price, int stock) {
         Connection con = null;
@@ -42,6 +42,7 @@ public class pharmacistBehavior {
         }
     }
     
+    @Override
     public ArrayList<ArrayList> viewAvailableMedicine() {
         Connection con = null;
         Statement stmt = null;

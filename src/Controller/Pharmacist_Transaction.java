@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pallerma_sd2022
  */
-public class Pharmacist_Transaction {
+public class Pharmacist_Transaction implements CommonControllerMethods{
 
     pharmacistBehavior a = new pharmacistBehavior();
     Add add = new Add();
@@ -30,11 +30,12 @@ public class Pharmacist_Transaction {
     UserLogin u = new UserLogin();
     String s = u.cusTrans();
 
-    public void pharmaTransaction() {
+    @Override
+    public void Transaction() {
         if (s.equals("Add Medicine")) {
             add.setVisible(true);
         } else if (s.equals("View Medicine")) {
-            this.availableMeds();
+            this.viewAvailableMeds();
         } else if (s.equals("Remove Medicine")) {
             remove.setVisible(true);
         } else if (s.equals("Pay")) {
@@ -53,7 +54,8 @@ public class Pharmacist_Transaction {
         JOptionPane.showMessageDialog(null, "Successfully Added!");
     }
 
-    public void availableMeds() {
+    @Override
+    public void viewAvailableMeds() {
         ArrayList<ArrayList> data = a.viewAvailableMedicine();
         Object[][] rows = new Object[data.size()][6];
         for (int index = 0; index < data.size(); index++) {
@@ -102,6 +104,7 @@ public class Pharmacist_Transaction {
         }
     }
 
+    @Override
     public void logout() {
         int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?");
         int yes = JOptionPane.YES_OPTION;

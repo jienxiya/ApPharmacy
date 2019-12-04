@@ -6,7 +6,6 @@
 package Controller;
 
 import Model.accountCRUD;
-import View.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +15,7 @@ import javax.swing.JOptionPane;
 public class Account_Management {
     
     accountCRUD acc = new accountCRUD();
+    
     public  void register(String uName, String email, String userType, String age, String pass){
         if(uName.equals("") || email.equals("") || userType.equals("") || age.equals("") || pass.equals("")){
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);

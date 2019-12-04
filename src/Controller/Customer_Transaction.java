@@ -20,7 +20,7 @@ import static java.lang.System.exit;
  *
  * @author pallerma_sd2022
  */
-public class Customer_Transaction {
+public class Customer_Transaction implements CommonControllerMethods{
 
     customerBehavior cusMethods = new customerBehavior();
     UserLogin u = new UserLogin();
@@ -28,9 +28,10 @@ public class Customer_Transaction {
     Pay pay = new Pay();
     String s = u.cusTrans();
 
-    public void cusTransaction() {
+    @Override
+    public void Transaction() {
         if (s.equals("Add Medicine")) {
-            this.availableMeds();
+            this.viewAvailableMeds();
         } else if (s.equals("View Medicine")) {
             purchase.setVisible(true);
         } else if (s.equals("Remove Medicine")) {
@@ -42,7 +43,8 @@ public class Customer_Transaction {
         }
     }
 
-    public void availableMeds() {
+    @Override
+    public void viewAvailableMeds() {
         ArrayList<ArrayList> data = cusMethods.viewAvailableMedicine();
         Object[][] rows = new Object[data.size()][6];
         for (int index = 0; index < data.size(); index++) {
@@ -113,14 +115,7 @@ public class Customer_Transaction {
         }
     }
 
-//    public void pay(String email, String bName, String money){
-//        if(bName.equals("") || money.equals("")){
-//            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }else{
-//            cusMethods.pay(email,bName, Double.valueOf(money));
-//        }
-//    }
-    public void pay(String email, String bName, String money) {
+    public void pay(String email,  String bName, String money) {
         if (bName.equals("") || money.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -128,11 +123,13 @@ public class Customer_Transaction {
         }
     }
 
+    @Override
     public void logout() {
         int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?");
         int yes = JOptionPane.YES_OPTION;
 
         if (option == yes) {
+            cusMethods.logout();
             JOptionPane.showMessageDialog(null, "Thank you for visiting ApPharmacy. Come Again! ");
         }
         exit(1);

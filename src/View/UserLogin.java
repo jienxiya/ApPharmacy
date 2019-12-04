@@ -120,9 +120,9 @@ public class UserLogin extends JFrame {
                 Customer_Transaction c = new Customer_Transaction();
                 Pharmacist_Transaction p = new Pharmacist_Transaction();
                 if (acc.getUserType(email, Pass).equals("Pharmacist")) {
-                    p.pharmaTransaction();
+                    p.Transaction();
                 }else{
-                    c.cusTransaction();
+                    c.Transaction();
                 }
             }
         });
