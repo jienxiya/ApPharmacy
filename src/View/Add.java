@@ -15,7 +15,7 @@ import java.awt.Toolkit;
  */
 public class Add extends javax.swing.JFrame {
 
-    static String genericName,brandName,medicineType,med_price,med_stock;
+    private String genericName,brandName,medicineType,med_price,med_stock;
     
     public Add() {
         initComponents();
@@ -292,23 +292,6 @@ public class Add extends javax.swing.JFrame {
             }
         });
     }
-    
-//    public String getGenericName(){
-//        System.out.println("gName" + genericName);
-//        return this.genericName;
-//    }
-//    public String getBrandName(){
-//        return this.brandName;
-//    }
-//    public String getMedType(){
-//        return this.medicineType;
-//    }
-//    public String getMedPrice(){
-//        return this.med_price;
-//    }
-//    public String getMedStock(){
-//        return this.med_stock;
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
