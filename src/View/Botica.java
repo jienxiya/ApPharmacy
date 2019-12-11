@@ -18,9 +18,6 @@ import javax.swing.*;
  * @author pallerma_sd2022
  */
 public class Botica extends JFrame {
-    
-    Boolean loginFlag = false;
-    Boolean regFlag = false;
 
     public Botica() {
         JFrame frame1 = new JFrame("ApPharmacy");

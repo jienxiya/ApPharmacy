@@ -144,8 +144,6 @@ public class PurchasedMeds extends javax.swing.JFrame {
         Customer_Transaction c = new Customer_Transaction();
         String id = idField.getText();		
         String qty = qtyField.getText();
-        purchasedMedId = Integer.parseInt(id);
-        qnty = Integer.parseInt(qty);
         c.purchaseMeds(id, qty);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed

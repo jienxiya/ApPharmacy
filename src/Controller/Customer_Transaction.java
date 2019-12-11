@@ -23,7 +23,7 @@ import static java.lang.System.exit;
 public class Customer_Transaction implements CommonControllerMethods{
 
     customerBehavior cusMethods = new customerBehavior();
-    UserLogin u = new UserLogin();
+    Dashboard u = new Dashboard();
     PurchasedMeds purchase = new PurchasedMeds();
     Pay pay = new Pay();
     String s = u.cusTrans();
@@ -109,7 +109,7 @@ public class Customer_Transaction implements CommonControllerMethods{
 
     public void purchaseMeds(String medID, String qty) {
         if (medID.equals("") || qty.equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             cusMethods.purchaseMedicine(Integer.valueOf(medID), Integer.valueOf(qty));
         }
@@ -117,7 +117,7 @@ public class Customer_Transaction implements CommonControllerMethods{
 
     public void pay(String email,  String bName, String money) {
         if (bName.equals("") || money.equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             cusMethods.pay(email, bName, Double.valueOf(money));
         }

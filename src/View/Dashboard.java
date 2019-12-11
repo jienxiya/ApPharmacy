@@ -21,14 +21,14 @@ import javax.swing.JRadioButton;
  *
  * @author 2ndyrGroupB
  */
-public class UserLogin extends JFrame {
+public class Dashboard extends JFrame {
 
     Account_Management acc = new Account_Management();
     JRadioButton add, view, remove, logout, pay;
     ButtonGroup G1 = new ButtonGroup();
     static String option = "";
 
-    public UserLogin() {
+    public Dashboard() {
     }
 
     public void userLoginGUI(String email, String Pass) {
@@ -46,11 +46,11 @@ public class UserLogin extends JFrame {
 
         label1.setFont(new Font("Serif", Font.BOLD, 20));
 
-        JButton back = new JButton("Back");
-        back.setBounds(100, 200, 120, 40);
+//        JButton back = new JButton("Back");
+//        back.setBounds(100, 200, 120, 40);
 
         JButton next = new JButton("Next");
-        next.setBounds(240, 200, 120, 40);
+        next.setBounds(180, 200, 120, 40);
 
 //        JRadioButton add,view,remove,logout, pay;
 //        ButtonGroup G1 = new ButtonGroup(); 
@@ -94,7 +94,7 @@ public class UserLogin extends JFrame {
         frame4.add(remove);
         frame4.add(label1);
         frame4.add(next);
-        frame4.add(back);
+//        frame4.add(back);
         frame4.add(logout);
         frame4.add(pay);
 

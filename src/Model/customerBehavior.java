@@ -194,16 +194,18 @@ public class customerBehavior implements CommonModelMethods{
                 bill = price * qty;
                 if (userType.equals("Adult")) {
                     if (money == bill) {
+                        this.removePaidMeds(bName);
                         JOptionPane.showMessageDialog(null, "Succesfully Paid!");
                     } else if (money > bill) {
                         bill = money - bill;
                         this.removePaidMeds(bName);
                         JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + bill);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Insufficient Money! You purchased " +qty+ " medicine .Your bill is " + bill, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (userType.equals("SeniorCitizen")) {
                     if (money == bill) {
+                        this.removePaidMeds(bName);
                         JOptionPane.showMessageDialog(null, "Succesfully Paid!");
                     } else if (money > bill) {
                         double discount = bill * 0.20;
@@ -225,7 +227,6 @@ public class customerBehavior implements CommonModelMethods{
     public void removePaidMeds(String bName) {
         Connection con = null;
         Statement stmt = null;
-        ResultSet rs = null;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -235,6 +236,7 @@ public class customerBehavior implements CommonModelMethods{
             stmt = con.createStatement();
             String query = String.format("DELETE FROM  tbl_purchasedmedicine WHERE brandName = '%s'", bName);
             int result = stmt.executeUpdate(query);
+            System.out.println(result + " rows affected");
 
             con.close();
         } catch (ClassNotFoundException | SQLException e) {

@@ -32,8 +32,6 @@ public class LoginPage extends JFrame {
     
     }
     public void LoginPage() {
-        Pharmacy rose = new Pharmacy();
-        rose.addAccounts(rose);
 
 //        JFrame frame2 = new JFrame("ApPharmacy");
         JOptionPane optionPane = new JOptionPane();
@@ -86,12 +84,13 @@ public class LoginPage extends JFrame {
                 String pass = pField.getText();
 
                 if (acc.login(email, pass) == true) {
-                    UserLogin u = new UserLogin(); 
+                    Dashboard u = new Dashboard(); 
                     u.userLoginGUI(email, pass);
+                    frame2.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Email or Password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                frame2.dispose();
+//                frame2.dispose();
             }
         });
     }

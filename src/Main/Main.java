@@ -10,7 +10,7 @@ import Controller.Pharmacist_Transaction;
 import Model.customerBehavior;
 import Model.accountCRUD;
 import Model.pharmacistBehavior;
-import View.Botica;
+import View.Pharmacy;
 
 /**
  *
@@ -32,8 +32,8 @@ public class Main {
 //        view
 //        Botica botica = new Botica();
 //        Register reg = new Register();
-
-        new Botica();
+        Pharmacy pharmacy = new Pharmacy();
+        pharmacy.setVisible(true);
         
          
 

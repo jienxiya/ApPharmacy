@@ -27,7 +27,7 @@ public class Pharmacist_Transaction implements CommonControllerMethods{
     Add add = new Add();
     Remove remove = new Remove();
     Update update = new Update();
-    UserLogin u = new UserLogin();
+    Dashboard u = new Dashboard();
     String s = u.cusTrans();
 
     @Override

@@ -6,7 +6,6 @@
 package View;
 
 import Controller.Account_Management;
-import appharmacy3.*;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -21,8 +20,6 @@ import javax.swing.*;
 public class RegisterPage extends JFrame {
 
     public RegisterPage() {
-        Pharmacy rose = new Pharmacy();
-        rose.addAccounts(rose);
 
         JFrame frame3 = new JFrame("ApPharmacy");
 

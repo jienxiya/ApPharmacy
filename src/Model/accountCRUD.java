@@ -6,7 +6,6 @@
  */
 package Model;
 
-import appharmacy3.User;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -21,7 +20,6 @@ public class accountCRUD {
         try {
             Connection con = null;
             Statement stmt = null;
-            ResultSet rs = null;
             String query;
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -46,9 +44,7 @@ public class accountCRUD {
                 JOptionPane.showMessageDialog(null, "Sorry! Underage are not allowed to register.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            }
+            
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -66,7 +62,6 @@ public class accountCRUD {
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-//            rs = stmt.executeQuery("select * from tbl");
             query = String.format("DELETE FROM tbl_accounts where id_account = %d", account_id);
             int result = stmt.executeUpdate(query);
             System.out.println(result);
@@ -83,7 +78,6 @@ public class accountCRUD {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
@@ -110,12 +104,8 @@ public class accountCRUD {
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-//            rs = stmt.executeQuery("select * from tbl");
             int result = stmt.executeUpdate("UPDATE tbl_accounts SET Username = 'Jane' WHERE id_account = 1");
-            System.out.println(result);
-            while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            }
+            System.out.println(result + " rows affected");
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -139,7 +129,6 @@ public class accountCRUD {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
                 dbPass = rs.getString("Password");
-
                 break;
             }
             con.close();
