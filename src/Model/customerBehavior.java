@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author pallerma_sd2022
  */
-public class customerBehavior implements CommonModelMethods{
+public class customerBehavior implements CommonModelMethods {
 
     @Override
     public ArrayList<ArrayList> viewAvailableMedicine() {
@@ -99,10 +99,13 @@ public class customerBehavior implements CommonModelMethods{
 //            String query = "SELECT id_medicine,id_account,userType FROM  tbl_medicines m JOIN tbl_accounts a ON m.id_";
             rs = stmt.executeQuery(query);
             while (rs.next()) {
-                this.addPurchasedMeds(emel, rs.getString("genericName"), rs.getString("brandName"), rs.getString("medType"), Double.valueOf(rs.getString("price")), qty);
-//                this.addPurchasedMeds(med_id, Integer.valueOf(rs.getString("id_account")), qty);
-                this.updateStock(med_id, (Integer.valueOf(rs.getString("stock")) - qty));
-
+                if (Integer.valueOf(rs.getString("stock")) >= qty) {
+                    this.updateStock(med_id, (Integer.valueOf(rs.getString("stock")) - qty));
+                    this.addPurchasedMeds(emel, rs.getString("genericName"), rs.getString("brandName"), rs.getString("medType"), Double.valueOf(rs.getString("price")), qty);
+                    JOptionPane.showMessageDialog(null, "You added " + rs.getString("brandName") + " to your cart");
+                } else {
+                    JOptionPane.showMessageDialog(null, "The medicine you order is out of stock", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
             con.close();
         } catch (Exception e) {
@@ -131,26 +134,6 @@ public class customerBehavior implements CommonModelMethods{
         }
     }
 
-//    public void addPurchasedMeds(int med_id, int account_id, int qtyPurchased) {
-//        Connection con = null;
-//        Statement stmt = null;
-//        ResultSet rs = null;
-//        String query;
-//
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            con = DriverManager.getConnection(
-//                    "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
-//
-//            stmt = con.createStatement();
-//            query = String.format("INSERT INTO tbl_purchasedmedicines (id_medicine, id_account, QuantityPurchased) VALUES ('%d','%d','%d')", med_id, account_id, qtyPurchased);
-//            int result = stmt.executeUpdate(query);
-//            System.out.println(result);
-//            con.close();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
     public void updateStock(int med_id, int qty) {
         Connection con = null;
         Statement stmt = null;
@@ -172,7 +155,7 @@ public class customerBehavior implements CommonModelMethods{
         }
     }
 
-    public double pay(String email, String bName, double money) {
+    public double pay(String email, int id, double money) {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -185,7 +168,7 @@ public class customerBehavior implements CommonModelMethods{
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-            String query = String.format("SELECT * FROM  tbl_purchasedmedicine WHERE brandName = '%s'", bName);
+            String query = String.format("SELECT * FROM  tbl_purchasedmedicine WHERE id_pMed = '%d'", id);
             rs = stmt.executeQuery(query);
             while (rs.next()) {
                 int qty = Integer.valueOf(rs.getString("stock"));
@@ -194,23 +177,24 @@ public class customerBehavior implements CommonModelMethods{
                 bill = price * qty;
                 if (userType.equals("Adult")) {
                     if (money == bill) {
-                        this.removePaidMeds(bName);
+                        this.removePaidMeds(id);
                         JOptionPane.showMessageDialog(null, "Succesfully Paid!");
                     } else if (money > bill) {
                         bill = money - bill;
-                        this.removePaidMeds(bName);
+                        this.removePaidMeds(id);
                         JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + bill);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Insufficient Money! You purchased " +qty+ " medicine .Your bill is " + bill, "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Insufficient Money! You purchased " + qty + " medicine .Your bill is " + bill, "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (userType.equals("SeniorCitizen")) {
+                    double discount = bill * 0.20;
                     if (money == bill) {
-                        this.removePaidMeds(bName);
-                        JOptionPane.showMessageDialog(null, "Succesfully Paid!");
-                    } else if (money > bill) {
-                        double discount = bill * 0.20;
                         double change = money - (bill - discount);
-                        this.removePaidMeds(bName);
+                        this.removePaidMeds(id);
+                        JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + change);
+                    } else if (money > bill) {
+                        double change = money - (bill - discount);
+                        this.removePaidMeds(id);
                         JOptionPane.showMessageDialog(null, "Succesfully Paid! Your Change is " + change);
                     } else {
                         JOptionPane.showMessageDialog(null, "Insufficient Money! Your bill is " + price, "Error", JOptionPane.ERROR_MESSAGE);
@@ -224,7 +208,7 @@ public class customerBehavior implements CommonModelMethods{
         return bill;
     }
 
-    public void removePaidMeds(String bName) {
+    public void removePaidMeds(int id) {
         Connection con = null;
         Statement stmt = null;
 
@@ -234,7 +218,7 @@ public class customerBehavior implements CommonModelMethods{
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-            String query = String.format("DELETE FROM  tbl_purchasedmedicine WHERE brandName = '%s'", bName);
+            String query = String.format("DELETE FROM  tbl_purchasedmedicine WHERE id_pMed = '%d'", id);
             int result = stmt.executeUpdate(query);
             System.out.println(result + " rows affected");
 
@@ -267,8 +251,8 @@ public class customerBehavior implements CommonModelMethods{
         }
         return userType;
     }
-    
-    public void logout(){
+
+    public void logout() {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -279,7 +263,7 @@ public class customerBehavior implements CommonModelMethods{
                     "jdbc:mysql://localhost:3306/db_appharmacy", "root", "");
 
             stmt = con.createStatement();
-            int result = stmt.executeUpdate("DELETE FROM  tbl_purchasedmedicine");
+            int result = stmt.executeUpdate("TRUNCATE TABLE tbl_purchasedmedicine");
 
             con.close();
         } catch (ClassNotFoundException | SQLException e) {

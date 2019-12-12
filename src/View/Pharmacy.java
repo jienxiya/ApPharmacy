@@ -16,7 +16,7 @@ public class Pharmacy extends javax.swing.JFrame {
      */
     public Pharmacy() {
         initComponents();
-        
+
     }
 
     /**

@@ -25,6 +25,7 @@ public class Customer_Transaction implements CommonControllerMethods{
     customerBehavior cusMethods = new customerBehavior();
     Dashboardd u = new Dashboardd();
     PurchasedMeds purchase = new PurchasedMeds();
+    Pharmacy rose = new Pharmacy();
     Pay pay = new Pay();
     String s = u.cusTrans();
 
@@ -115,23 +116,23 @@ public class Customer_Transaction implements CommonControllerMethods{
         }
     }
 
-    public void pay(String email,  String bName, String money) {
-        if (bName.equals("") || money.equals("")) {
+    public void pay(String email,  String id, String money) {
+        if (id.equals("") || money.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            cusMethods.pay(email, bName, Double.valueOf(money));
+            cusMethods.pay(email, Integer.valueOf(id), Double.valueOf(money));
         }
     }
 
     @Override
     public void logout() {
-        int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?");
+        int option = JOptionPane.showConfirmDialog(null, "If you log out, all unpaid medicine in your cart will be lost. Are you sure you want to logout? ");
         int yes = JOptionPane.YES_OPTION;
 
         if (option == yes) {
             cusMethods.logout();
             JOptionPane.showMessageDialog(null, "Thank you for visiting ApPharmacy. Come Again! ");
-            exit(1);
+            rose.setVisible(true);
         }
     }
 }
