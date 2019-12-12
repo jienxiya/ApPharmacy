@@ -27,16 +27,16 @@ public class Pharmacist_Transaction implements CommonControllerMethods{
     Add add = new Add();
     Remove remove = new Remove();
     Update update = new Update();
-    Dashboard u = new Dashboard();
+    Dashboardd u = new Dashboardd();
     String s = u.cusTrans();
 
     @Override
     public void Transaction() {
-        if (s.equals("Add Medicine")) {
+        if (s.equals("View")) {
             add.setVisible(true);
-        } else if (s.equals("View Medicine")) {
+        } else if (s.equals("Purchased")) {
             this.viewAvailableMeds();
-        } else if (s.equals("Remove Medicine")) {
+        } else if (s.equals("View Purchased")) {
             remove.setVisible(true);
         } else if (s.equals("Pay")) {
             update.setVisible(true);
@@ -111,7 +111,7 @@ public class Pharmacist_Transaction implements CommonControllerMethods{
 
         if (option == yes) {
             JOptionPane.showMessageDialog(null, "Thank you for Serving ApPharmacy. Come Again! ");
+            exit(1);
         }
-        exit(1);
     }
 }

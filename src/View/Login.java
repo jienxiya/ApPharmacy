@@ -6,7 +6,6 @@
 package View;
 
 import Controller.Account_Management;
-import static View.LoginPage.returnEmail;
 import javax.swing.JOptionPane;
 
 /**
@@ -151,8 +150,9 @@ public class Login extends javax.swing.JFrame {
                 String pass = password.getText();
 
                 if (acc.login(emel, pass) == true) {
-                    Dashboard u = new Dashboard(); 
+                    Dashboardd u = new Dashboardd(); 
                     u.userLoginGUI(emel, pass);
+                    u.setVisible(true);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Email or Password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);

@@ -23,20 +23,20 @@ import static java.lang.System.exit;
 public class Customer_Transaction implements CommonControllerMethods{
 
     customerBehavior cusMethods = new customerBehavior();
-    Dashboard u = new Dashboard();
+    Dashboardd u = new Dashboardd();
     PurchasedMeds purchase = new PurchasedMeds();
     Pay pay = new Pay();
     String s = u.cusTrans();
 
     @Override
     public void Transaction() {
-        if (s.equals("Add Medicine")) {
+        if (s.equals("View")) {
             this.viewAvailableMeds();
-        } else if (s.equals("View Medicine")) {
+        } else if (s.equals("Purchased")) {
             purchase.setVisible(true);
-        } else if (s.equals("Remove Medicine")) {
+        } else if (s.equals("View Purchased")) {
             this.viewPurchasedMeds();
-        } else if (s.equals("logout")) {
+        } else if (s.equals("Logout")) {
             this.logout();
         } else {
             pay.setVisible(true);
@@ -131,7 +131,7 @@ public class Customer_Transaction implements CommonControllerMethods{
         if (option == yes) {
             cusMethods.logout();
             JOptionPane.showMessageDialog(null, "Thank you for visiting ApPharmacy. Come Again! ");
+            exit(1);
         }
-        exit(1);
     }
 }

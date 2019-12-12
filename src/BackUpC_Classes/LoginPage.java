@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package BackUpC_Classes;
 
+import BackUpC_Classes.Dashboard;
 import Controller.Account_Management;
 import appharmacy3.*;
 import java.awt.Dimension;

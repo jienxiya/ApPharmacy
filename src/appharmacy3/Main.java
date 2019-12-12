@@ -5,7 +5,7 @@
  */
 package appharmacy3;
 
-import View.Botica;
+import BackUpC_Classes.Botica;
 import java.util.Scanner;
 
 /**
