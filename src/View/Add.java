@@ -6,8 +6,7 @@
 package View;
 
 import Controller.Pharmacist_Transaction;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,12 +14,9 @@ import java.awt.Toolkit;
  */
 public class Add extends javax.swing.JFrame {
 
-    private String genericName,brandName,medicineType,med_price,med_stock;
-    
+//    private String genericName,brandName,medicineType,med_price,med_stock;
     public Add() {
         initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        jPanel1.setLocation(dim.width/3-this.getSize().width/3, dim.height/3-this.getSize().height/3);
         buttonGroup1.add(cough);
         buttonGroup1.add(headache);
         buttonGroup1.add(bodyPain);
@@ -274,7 +270,7 @@ public class Add extends javax.swing.JFrame {
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         Pharmacist_Transaction a = new Pharmacist_Transaction();
-       
+        String genericName, brandName, medicineType, med_price, med_stock;
         genericName = gName.getText();
         brandName = bName.getText();
         medicineType = buttonGroup1.getSelection().getActionCommand();

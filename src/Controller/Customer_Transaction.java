@@ -6,7 +6,6 @@
 package Controller;
 
 import Model.*;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -14,13 +13,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import View.*;
+import java.awt.Color;
 import static java.lang.System.exit;
-
 /**
  *
  * @author pallerma_sd2022
  */
-public class Customer_Transaction implements CommonControllerMethods{
+public class Customer_Transaction implements CommonControllerMethods {
 
     customerBehavior cusMethods = new customerBehavior();
     Dashboardd u = new Dashboardd();
@@ -66,13 +65,14 @@ public class Customer_Transaction implements CommonControllerMethods{
                 return false;
             }
         };
+        Color color = new Color(255, 204, 204);
         JTable table = new JTable(rows, cols);
         Font font = new Font("Verdana", Font.PLAIN, 12);
         table.setModel(tableModel);
         table.setFont(font);
         table.setRowHeight(25);
-        table.getTableHeader().setPreferredSize(new Dimension(100, 30));
-        table.getTableHeader().setFont(font);
+        table.setBackground(color);
+
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Available Medicines", JOptionPane.PLAIN_MESSAGE);
     }
 
@@ -97,13 +97,13 @@ public class Customer_Transaction implements CommonControllerMethods{
                 return false;
             }
         };
+        Color color = new Color(255, 204, 204);
         JTable table = new JTable(rows, cols);
         Font font = new Font("Verdana", Font.PLAIN, 12);
         table.setModel(tableModel);
         table.setFont(font);
         table.setRowHeight(25);
-        table.getTableHeader().setPreferredSize(new Dimension(100, 30));
-        table.getTableHeader().setFont(font);
+        table.setBackground(color);
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Purchased Medicines", JOptionPane.PLAIN_MESSAGE
         );
     }
@@ -116,8 +116,8 @@ public class Customer_Transaction implements CommonControllerMethods{
         }
     }
 
-    public void pay(String email,  String id, String money) {
-        if (id.equals("") || money.equals("")) {
+    public void pay(String email, String id, String money) {
+        if (email.equals("") || id.equals("") || money.equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             cusMethods.pay(email, Integer.valueOf(id), Double.valueOf(money));
@@ -132,7 +132,7 @@ public class Customer_Transaction implements CommonControllerMethods{
         if (option == yes) {
             cusMethods.logout();
             JOptionPane.showMessageDialog(null, "Thank you for visiting ApPharmacy. Come Again! ");
-            rose.setVisible(true);
+            exit(1);
         }
     }
 }

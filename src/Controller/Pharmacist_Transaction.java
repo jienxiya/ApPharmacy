@@ -8,6 +8,7 @@ package Controller;
 import Model.pharmacistBehavior;
 import View.Add;
 import View.*;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import static java.lang.System.exit;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pallerma_sd2022
  */
-public class Pharmacist_Transaction implements CommonControllerMethods{
+public class Pharmacist_Transaction implements CommonControllerMethods {
 
     pharmacistBehavior a = new pharmacistBehavior();
     Add add = new Add();
@@ -46,12 +47,12 @@ public class Pharmacist_Transaction implements CommonControllerMethods{
     }
 
     public void addMeds(String gName, String bName, String medType, String price, String stock) {
-
-        if (gName.equals("") || bName.equals("") || medType.equals("") || price.equals("") || stock.equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (gName.equals("") || bName.equals("") || medType == null || price.equals("") || stock.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "WARNING", JOptionPane.WARNING_MESSAGE);
+        } else {
+            a.addMedicine(gName, bName, medType, Integer.valueOf(price), Integer.valueOf(stock));
+            JOptionPane.showMessageDialog(null, "Successfully Added!");
         }
-        a.addMedicine(gName, bName, medType, Integer.valueOf(price), Integer.valueOf(stock));
-        JOptionPane.showMessageDialog(null, "Successfully Added!");
     }
 
     @Override
@@ -76,6 +77,7 @@ public class Pharmacist_Transaction implements CommonControllerMethods{
                 return false;
             }
         };
+        Color color = new Color(255, 204, 204);
         JTable table = new JTable(rows, cols);
         Font font = new Font("Verdana", Font.PLAIN, 12);
         table.setModel(tableModel);
@@ -83,21 +85,22 @@ public class Pharmacist_Transaction implements CommonControllerMethods{
         table.setRowHeight(25);
         table.getTableHeader().setPreferredSize(new Dimension(100, 30));
         table.getTableHeader().setFont(font);
+        table.setBackground(color);
         JOptionPane.showMessageDialog(null, new JScrollPane(table), "Available Medicines", JOptionPane.PLAIN_MESSAGE);
     }
 
-    public void removeMeds(int med_id) {
-        if (med_id != 0) {
-            a.removeMedicine(med_id);
-            JOptionPane.showMessageDialog(null, "Successfully Removed!");
+    public void removeMeds(String med_id, String bName) {
+        if (med_id.equals("") || bName.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Nothing to remove.", "Error", JOptionPane.ERROR_MESSAGE);
+            a.removeMedicine(Integer.valueOf(med_id));
+            JOptionPane.showMessageDialog(null, "Successfully Removed!");
         }
     }
 
     public void updateMeds(String med_id, String gName, String bName, String price, String stock) {
         if (med_id.equals("") || gName.equals("") || bName.equals("") || price.equals("") || stock.equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in the fields.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             a.updateMedicine(Integer.valueOf(med_id), gName, bName, Double.valueOf(price), Integer.valueOf(stock));
             JOptionPane.showMessageDialog(null, "Successfully Updated!");

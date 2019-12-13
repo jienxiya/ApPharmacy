@@ -149,8 +149,9 @@ public class Remove extends javax.swing.JFrame {
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         Pharmacist_Transaction p = new Pharmacist_Transaction();
         String id = med_id.getText();
-        int medID = Integer.parseInt(id);
-        p.removeMeds(medID);
+        String bNem = bName.getText();
+//        int medID = Integer.parseInt(id);
+        p.removeMeds(id, bNem);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 

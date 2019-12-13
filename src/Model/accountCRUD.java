@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class accountCRUD {
     public accountCRUD(){};
-    public void addAccount(String uName, String email, String userType, int age, String pass) {
-
+    public boolean addAccount(String uName, String email, String userType, int age, String pass) {
+        boolean flag = true;
         try {
             Connection con = null;
             Statement stmt = null;
@@ -41,6 +41,7 @@ public class accountCRUD {
                 int result = stmt.executeUpdate(query);
                 System.out.println(result + "rows affected");
             } else {
+                flag = false;
                 JOptionPane.showMessageDialog(null, "Sorry! Underage are not allowed to register.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
@@ -49,6 +50,7 @@ public class accountCRUD {
         } catch (Exception e) {
             System.out.println(e);
         }
+        return flag;
     }
 
     public void Delete(int account_id) {

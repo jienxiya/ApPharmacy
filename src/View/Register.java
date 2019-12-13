@@ -176,9 +176,9 @@ public class Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pharma)
-                    .addComponent(customer))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customer)
+                    .addComponent(pharma))
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -233,8 +233,8 @@ public class Register extends javax.swing.JFrame {
         String Age = age.getText();
 
         acc.register(userName, Email, userType, Age, Pass);
-        Login l = new Login();
-        l.setVisible(true);
+//        Login l = new Login();
+//        l.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
